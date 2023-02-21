@@ -8,7 +8,7 @@ public enum Direction {
     public static boolean contains(String testedValue){
         return Arrays.stream(values())
                 .map(Enum::name)
-                .anyMatch(code -> code.equals(testedValue));
+                .anyMatch(code -> code.equalsIgnoreCase(testedValue));
     }
 
     private static final Direction[] directions = values();

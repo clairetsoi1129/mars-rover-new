@@ -18,7 +18,7 @@ public class Instruction {
 
     public Instruction(String initRow, String moveRow) throws ValidationException{
         this.initRow = initRow;
-        this.movement = moveRow;
+        this.movement = moveRow.toUpperCase();
         validate();
         parseInitRow();
 
@@ -28,7 +28,7 @@ public class Instruction {
         String[] initRows = initRow.split(" ");
         positionX = Integer.parseInt(initRows[0]);
         positionY = Integer.parseInt(initRows[1]);
-        direction = Direction.valueOf(initRows[2]);
+        direction = Direction.valueOf(initRows[2].toUpperCase());
     }
 
     public void validate() throws ValidationException {
