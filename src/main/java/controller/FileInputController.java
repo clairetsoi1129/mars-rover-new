@@ -1,15 +1,19 @@
 package controller;
 
 import exception.ValidationException;
+import model.Instruction;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
 public class FileInputController {
     private final String ERR_SIZE_ROW = "Plateau size is invalid. Please input 2 integers and separated by space.";
     private String sizeRow;
+    private List<Instruction> instructions;
     private int plateauWidth;
     private int plateauHeight;
     public FileInputController(String filename) throws ValidationException {
@@ -19,8 +23,11 @@ public class FileInputController {
             sizeRow = scanner.nextLine();
             validate();
             parseSize();
+            instructions = new ArrayList<>();
+            while(scanner.hasNext()){
+                instructions.add(new Instruction(scanner.nextLine(), scanner.nextLine()));
+            }
             scanner.close();
-
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -38,6 +45,10 @@ public class FileInputController {
 
     public int getPlateauHeight() {
         return plateauHeight;
+    }
+
+    public List<Instruction> getInstructions() {
+        return instructions;
     }
 
     public void validate() throws ValidationException {

@@ -1,7 +1,15 @@
-Input
-testfile/input-wrong-size-negative-number.txt
-testfile/input-wrong-size-1-number.txt
-testfile/input-wrong-size-3-number.txt
-testfile/input-wrong-size-alpha.txt
-testfile/input-wrong-size-negative-number.txt
-testfile/input-wrong-size-negative-number.txt
+Input,Output
+testfile/input-negative-size.txt,Plateau size is invalid. Please input 2 integers and separated by space.
+testfile/input-missing-height.txt,Plateau size is invalid. Please input 2 integers and separated by space.
+testfile/input-wrong-size-3-number.txt,Plateau size is invalid. Please input 2 integers and separated by space.
+testfile/input-wrong-size-alpha.txt,Plateau size is invalid. Please input 2 integers and separated by space.
+testfile/input-decimal-size.txt,Plateau size is invalid. Please input 2 integers and separated by space.
+testfile/input-empty-size.txt,Plateau size is invalid. Please input 2 integers and separated by space.
+testfile/input-missing-initposY-direction.txt,Invalid initial position or direction. Please input positive integer for x and y coordinates of Rover. And input N/E/S/W for direction.
+testfile/input-missing-direction.txt,Invalid initial position or direction. Please input positive integer for x and y coordinates of Rover. And input N/E/S/W for direction.
+testfile/input-wrong-direction.txt,Invalid initial position or direction. Please input positive integer for x and y coordinates of Rover. And input N/E/S/W for direction.
+testfile/input-decimal-posX.txt,Invalid initial position or direction. Please input positive integer for x and y coordinates of Rover. And input N/E/S/W for direction.
+testfile/input-decimal-posY.txt,Invalid initial position or direction. Please input positive integer for x and y coordinates of Rover. And input N/E/S/W for direction.
+testfile/input-negative-posX.txt,Invalid initial position or direction. Please input positive integer for x and y coordinates of Rover. And input N/E/S/W for direction.
+testfile/input-negative-posY.txt,Invalid initial position or direction. Please input positive integer for x and y coordinates of Rover. And input N/E/S/W for direction.
+testfile/input-wrong-movement.txt,Invalid movement. Please input L/R/M in one row.

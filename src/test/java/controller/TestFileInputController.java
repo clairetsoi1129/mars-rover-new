@@ -1,6 +1,7 @@
 package controller;
 
 import exception.ValidationException;
+import model.Direction;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
@@ -8,27 +9,66 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class TestFileInputController {
     @Test
-    void testNormalFile() {
+    void testNormalFile1Rover() {
         try {
-            FileInputController controller = new FileInputController("testfile/input-normal.txt");
+            FileInputController controller = new FileInputController("testfile/input-normal-1rovers.txt");
             assertNotNull(controller);
             assertEquals(5, controller.getPlateauWidth());
             assertEquals(5, controller.getPlateauHeight());
+            assertEquals(1, controller.getInstructions().get(0).getPositionX());
+            assertEquals(2, controller.getInstructions().get(0).getPositionY());
+            assertEquals(Direction.N, controller.getInstructions().get(0).getDirection());
+        }catch (ValidationException ignored){
+
+        }
+    }
+    @Test
+    void testNormalFile2Rovers() {
+        try {
+            FileInputController controller = new FileInputController("testfile/input-normal-2rovers.txt");
+            assertNotNull(controller);
+            assertEquals(5, controller.getPlateauWidth());
+            assertEquals(5, controller.getPlateauHeight());
+            assertEquals(1, controller.getInstructions().get(0).getPositionX());
+            assertEquals(2, controller.getInstructions().get(0).getPositionY());
+            assertEquals(Direction.N, controller.getInstructions().get(0).getDirection());
+            assertEquals(3, controller.getInstructions().get(1).getPositionX());
+            assertEquals(3, controller.getInstructions().get(1).getPositionY());
+            assertEquals(Direction.E, controller.getInstructions().get(1).getDirection());
         }catch (ValidationException ignored){
 
         }
     }
 
+    @Test
+    void testNormalFile3Rovers() {
+        try {
+            FileInputController controller = new FileInputController("testfile/input-normal-3rovers.txt");
+            assertNotNull(controller);
+            assertEquals(5, controller.getPlateauWidth());
+            assertEquals(5, controller.getPlateauHeight());
+            assertEquals(1, controller.getInstructions().get(0).getPositionX());
+            assertEquals(2, controller.getInstructions().get(0).getPositionY());
+            assertEquals(Direction.N, controller.getInstructions().get(0).getDirection());
+            assertEquals(3, controller.getInstructions().get(1).getPositionX());
+            assertEquals(3, controller.getInstructions().get(1).getPositionY());
+            assertEquals(Direction.E, controller.getInstructions().get(1).getDirection());
+            assertEquals(0, controller.getInstructions().get(2).getPositionX());
+            assertEquals(0, controller.getInstructions().get(2).getPositionY());
+            assertEquals(Direction.S, controller.getInstructions().get(2).getDirection());
+        }catch (ValidationException ignored){
+        }
+    }
+
     @ParameterizedTest
     @CsvFileSource(resources = "/fileinput-invalid-case.csv", numLinesToSkip = 1)
-    void testInvalidSizeThrowException(
-            String input) {
+    void testInvalidCaseThrowException(
+            String input, String expectedMessage) {
         Exception exception = assertThrows(ValidationException.class, () -> {
             FileInputController controller = new FileInputController(input);
             assertNotNull(controller);
         });
 
-        String expectedMessage = "Plateau size is invalid. Please input 2 integers and separated by space.";
         String actualMessage = exception.getMessage();
 
         assertEquals(actualMessage,expectedMessage);
