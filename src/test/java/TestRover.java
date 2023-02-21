@@ -86,4 +86,60 @@ public class TestRover {
 
         assertEquals(actualMessage,expectedMessage);
     }
+
+    @Test
+    void testNormalRoverMoveNorthOneStep() {
+        try {
+            Plateau plateau = new Plateau(5, 5);
+            Rover rover = new Rover(1, 1, "N", plateau);
+            rover.setInstruction("M");
+            rover.go();
+            assertEquals(new Point(1,2),rover.getPosition());
+            assertEquals(Direction.N,rover.getDirection());
+        }catch (ValidationException ignored){
+
+        }
+    }
+
+    @Test
+    void testNormalRoverMoveSouthOneStep() {
+        try {
+            Plateau plateau = new Plateau(5, 5);
+            Rover rover = new Rover(1, 1, "S", plateau);
+            rover.setInstruction("M");
+            rover.go();
+            assertEquals(new Point(1,0),rover.getPosition());
+            assertEquals(Direction.S,rover.getDirection());
+        }catch (ValidationException ignored){
+
+        }
+    }
+
+    @Test
+    void testNormalRoverMoveEastOneStep() {
+        try {
+            Plateau plateau = new Plateau(5, 5);
+            Rover rover = new Rover(1, 1, "E", plateau);
+            rover.setInstruction("M");
+            rover.go();
+            assertEquals(new Point(2,1),rover.getPosition());
+            assertEquals(Direction.E,rover.getDirection());
+        }catch (ValidationException ignored){
+
+        }
+    }
+
+    @Test
+    void testNormalRoverMoveWestOneStep() {
+        try {
+            Plateau plateau = new Plateau(5, 5);
+            Rover rover = new Rover(1, 1, "W", plateau);
+            rover.setInstruction("M");
+            rover.go();
+            assertEquals(new Point(0,1),rover.getPosition());
+            assertEquals(Direction.W,rover.getDirection());
+        }catch (ValidationException ignored){
+
+        }
+    }
 }

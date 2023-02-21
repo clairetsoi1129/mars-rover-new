@@ -25,6 +25,8 @@ public class Rover {
 
     private Plateau plateau;
 
+    private String instruction;
+
     public Rover(int posX, int posY, String dirStr, Plateau plateau) throws ValidationException {
         this.posX = posX;
         this.posY = posY;
@@ -60,6 +62,25 @@ public class Rover {
         }
         if (plateau.getSize().height < posY){
             throw new ValidationException(ERR_OUT_OF_BOUND_POSY);
+        }
+    }
+
+    public void setInstruction(String instruction) {
+        this.instruction = instruction;
+    }
+
+    public void go() {
+        for (int i=0; i<instruction.length(); i++){
+            if (instruction.charAt(i) == 'M'){
+                switch (direction) {
+                    case N -> position.translate(0, 1);
+                    case E -> position.translate(1, 0);
+                    case S -> position.translate(0, -1);
+                    case W -> position.translate(-1, 0);
+                    default -> {
+                    } //ignore
+                }
+            }
         }
     }
 }
