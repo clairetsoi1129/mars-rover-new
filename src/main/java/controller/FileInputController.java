@@ -17,13 +17,13 @@ public class FileInputController {
     private int plateauWidth;
     private int plateauHeight;
     public FileInputController(String filename) throws ValidationException {
+        instructions = new ArrayList<>();
         try {
             File inputFile = new File(filename);
             Scanner scanner = new Scanner(inputFile);
             sizeRow = scanner.nextLine();
             validate();
             parseSize();
-            instructions = new ArrayList<>();
             while(scanner.hasNext()){
                 instructions.add(new Instruction(scanner.nextLine(), scanner.nextLine()));
             }

@@ -79,7 +79,7 @@ public class TestRover {
         try {
             Plateau plateau = new Plateau(5, 5);
             Rover rover = new Rover(1, 1, Direction.N, plateau);
-            rover.setInstruction("M");
+            rover.setMovement("M");
             rover.go();
             assertEquals(new Point(1,2),rover.getPosition());
             assertEquals(Direction.N,rover.getDirection());
@@ -93,7 +93,7 @@ public class TestRover {
         try {
             Plateau plateau = new Plateau(5, 5);
             Rover rover = new Rover(1, 1, Direction.S, plateau);
-            rover.setInstruction("M");
+            rover.setMovement("M");
             rover.go();
             assertEquals(new Point(1,0),rover.getPosition());
             assertEquals(Direction.S,rover.getDirection());
@@ -107,7 +107,7 @@ public class TestRover {
         try {
             Plateau plateau = new Plateau(5, 5);
             Rover rover = new Rover(1, 1, Direction.E, plateau);
-            rover.setInstruction("M");
+            rover.setMovement("M");
             rover.go();
             assertEquals(new Point(2,1),rover.getPosition());
             assertEquals(Direction.E,rover.getDirection());
@@ -121,7 +121,7 @@ public class TestRover {
         try {
             Plateau plateau = new Plateau(5, 5);
             Rover rover = new Rover(1, 1, Direction.W, plateau);
-            rover.setInstruction("M");
+            rover.setMovement("M");
             rover.go();
             assertEquals(new Point(0,1),rover.getPosition());
             assertEquals(Direction.W,rover.getDirection());
@@ -135,7 +135,7 @@ public class TestRover {
         try {
             Plateau plateau = new Plateau(5, 5);
             Rover rover = new Rover(1, 1, Direction.N, plateau);
-            rover.setInstruction("L");
+            rover.setMovement("L");
             rover.go();
             assertEquals(new Point(1,1),rover.getPosition());
             assertEquals(Direction.W,rover.getDirection());
@@ -149,7 +149,7 @@ public class TestRover {
         try {
             Plateau plateau = new Plateau(5, 5);
             Rover rover = new Rover(1, 1, Direction.S, plateau);
-            rover.setInstruction("L");
+            rover.setMovement("L");
             rover.go();
             assertEquals(new Point(1,1),rover.getPosition());
             assertEquals(Direction.E,rover.getDirection());
@@ -163,7 +163,7 @@ public class TestRover {
         try {
             Plateau plateau = new Plateau(5, 5);
             Rover rover = new Rover(1, 1, Direction.E, plateau);
-            rover.setInstruction("L");
+            rover.setMovement("L");
             rover.go();
             assertEquals(new Point(1,1),rover.getPosition());
             assertEquals(Direction.N,rover.getDirection());
@@ -177,7 +177,7 @@ public class TestRover {
         try {
             Plateau plateau = new Plateau(5, 5);
             Rover rover = new Rover(1, 1, Direction.W, plateau);
-            rover.setInstruction("L");
+            rover.setMovement("L");
             rover.go();
             assertEquals(new Point(1,1),rover.getPosition());
             assertEquals(Direction.S,rover.getDirection());
@@ -191,7 +191,7 @@ public class TestRover {
         try {
             Plateau plateau = new Plateau(5, 5);
             Rover rover = new Rover(1, 1, Direction.N, plateau);
-            rover.setInstruction("R");
+            rover.setMovement("R");
             rover.go();
             assertEquals(new Point(1,1),rover.getPosition());
             assertEquals(Direction.E,rover.getDirection());
@@ -205,7 +205,7 @@ public class TestRover {
         try {
             Plateau plateau = new Plateau(5, 5);
             Rover rover = new Rover(1, 1, Direction.S, plateau);
-            rover.setInstruction("R");
+            rover.setMovement("R");
             rover.go();
             assertEquals(new Point(1,1),rover.getPosition());
             assertEquals(Direction.W,rover.getDirection());
@@ -219,7 +219,7 @@ public class TestRover {
         try {
             Plateau plateau = new Plateau(5, 5);
             Rover rover = new Rover(1, 1, Direction.E, plateau);
-            rover.setInstruction("R");
+            rover.setMovement("R");
             rover.go();
             assertEquals(new Point(1,1),rover.getPosition());
             assertEquals(Direction.S,rover.getDirection());
@@ -233,7 +233,7 @@ public class TestRover {
         try {
             Plateau plateau = new Plateau(5, 5);
             Rover rover = new Rover(1, 1, Direction.W, plateau);
-            rover.setInstruction("R");
+            rover.setMovement("R");
             rover.go();
             assertEquals(new Point(1,1),rover.getPosition());
             assertEquals(Direction.N,rover.getDirection());

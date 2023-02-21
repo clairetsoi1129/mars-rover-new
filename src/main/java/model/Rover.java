@@ -24,7 +24,7 @@ public class Rover {
 
     private Plateau plateau;
 
-    private String instruction;
+    private String movement;
 
     public Rover(int posX, int posY, Direction direction, Plateau plateau) throws ValidationException {
         this.posX = posX;
@@ -59,13 +59,13 @@ public class Rover {
         }
     }
 
-    public void setInstruction(String instruction) {
-        this.instruction = instruction;
+    public void setMovement(String movement) {
+        this.movement = movement;
     }
 
     public void go() {
-        for (int i=0; i<instruction.length(); i++){
-            if (instruction.charAt(i) == 'M'){
+        for (int i = 0; i< movement.length(); i++){
+            if (movement.charAt(i) == 'M'){
                 switch (direction) {
                     case N -> position.translate(0, 1);
                     case E -> position.translate(1, 0);
@@ -74,9 +74,9 @@ public class Rover {
                     default -> {
                     } //ignore
                 }
-            }else if (instruction.charAt(i) == 'L'){
+            }else if (movement.charAt(i) == 'L'){
                 direction = direction.left();
-            }else if (instruction.charAt(i) == 'R'){
+            }else if (movement.charAt(i) == 'R'){
                 direction = direction.right();
             } // ignore
 
