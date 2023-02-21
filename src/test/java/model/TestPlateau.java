@@ -1,3 +1,5 @@
+package model;
+
 import exception.ValidationException;
 import model.Plateau;
 import org.junit.jupiter.api.Test;

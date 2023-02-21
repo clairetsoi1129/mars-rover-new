@@ -1,3 +1,5 @@
+package model;
+
 import exception.ValidationException;
 import model.Direction;
 import model.Plateau;
