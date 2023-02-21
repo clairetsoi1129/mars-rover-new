@@ -51,7 +51,7 @@ public class FileInputController {
         return instructions;
     }
 
-    public void validate() throws ValidationException {
+    private void validate() throws ValidationException {
         String regex = "^[0-9]+\s[0-9]+$";
         boolean match = Pattern.compile(regex).matcher(sizeRow).matches();
 
