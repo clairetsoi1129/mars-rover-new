@@ -10,4 +10,19 @@ public enum Direction {
                 .map(Enum::name)
                 .anyMatch(code -> code.equals(testedValue));
     }
+
+    private static final Direction[] directions = values();
+
+    public Direction right() {
+        int ordinal = this.ordinal();
+        return directions[(ordinal + 1) % directions.length];
+    }
+
+    public Direction left() {
+        int ordinal = this.ordinal();
+        if (ordinal == 0) {
+            ordinal = 4;
+        }
+        return directions[(ordinal - 1) % directions.length];
+    }
 }

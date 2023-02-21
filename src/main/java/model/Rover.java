@@ -80,7 +80,12 @@ public class Rover {
                     default -> {
                     } //ignore
                 }
-            }
+            }else if (instruction.charAt(i) == 'L'){
+                direction = direction.left();
+            }else if (instruction.charAt(i) == 'R'){
+                direction = direction.right();
+            } // ignore
+
         }
     }
 }
