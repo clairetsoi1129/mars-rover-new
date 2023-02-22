@@ -22,11 +22,11 @@ public class FileInputController {
         try {
             File inputFile = new File(filename);
             Scanner scanner = new Scanner(inputFile);
-            sizeRow = scanner.nextLine();
+            sizeRow = scanner.nextLine().trim();
             validate();
             parseSize();
             while (scanner.hasNext()) {
-                instructions.add(new Instruction(scanner.nextLine(), scanner.nextLine()));
+                instructions.add(new Instruction(scanner.nextLine().trim(), scanner.nextLine().trim()));
             }
             scanner.close();
         } catch (FileNotFoundException e) {

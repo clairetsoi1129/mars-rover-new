@@ -1,6 +1,6 @@
 package main;
 
-import controller.FileInputController;
+import controller.TextInputController;
 import exception.ValidationException;
 import model.Instruction;
 import model.Plateau;
@@ -9,17 +9,17 @@ import model.Rover;
 import java.text.MessageFormat;
 import java.util.List;
 
-public class FileInputMain {
+public class TextInputMain {
     public static void main(String[] args){
         try {
-            FileInputController controller = new FileInputController("testfile/input-normal-3rovers.txt");
+            TextInputController controller = new TextInputController();
             Plateau plateau = new Plateau(controller.getPlateauWidth(), controller.getPlateauHeight());
             List<Instruction> instructions = controller.getInstructions();
             for (Instruction instruction: instructions) {
                 Rover rover = new Rover(
                         instruction.getPositionX(), instruction.getPositionY(),
                         instruction.getDirection(), plateau
-                        );
+                );
                 rover.setMovement(instruction.getMovement());
                 rover.go();
                 System.out.println(MessageFormat.format("Final position: {0},{1}",

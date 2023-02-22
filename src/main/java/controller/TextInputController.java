@@ -30,18 +30,18 @@ public class TextInputController {
         Scanner scanner = new Scanner(System.in);
         System.out.println(MSG_WELCOME);
         System.out.println(MSG_STEP_SIZE);
-        sizeRow = scanner.nextLine();
+        sizeRow = scanner.nextLine().trim();
         validate();
         parseSize();
 
         do {
             System.out.println(MSG_STEP_INIT);
-            Instruction instruction = new Instruction(scanner.nextLine());
+            Instruction instruction = new Instruction(scanner.nextLine().trim());
             System.out.println(MSG_STEP_MOVE);
-            instruction.setMovement(scanner.nextLine());
+            instruction.setMovement(scanner.nextLine().trim());
             instructions.add(instruction);
             System.out.println(MSG_STEP_CONT);
-        } while (parseContinue(scanner.nextLine()));
+        } while (parseContinue(scanner.nextLine().trim()));
 
         scanner.close();
     }
