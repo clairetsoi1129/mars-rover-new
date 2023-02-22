@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Set;
 
 public class Rover {
+    private final String ERR_HIT_OBSTACLE = "Watch out! You hit obstacle.";
     private final String ERR_OUT_OF_BOUND_POSX = "Invalid position X. It is out of Plateau size.";
     private final String ERR_OUT_OF_BOUND_POSY = "Invalid position Y. It is out of Plateau size.";
     @Min(value = 0, message = "Invalid position X. It is out of Plateau size.")
@@ -80,7 +81,13 @@ public class Rover {
                 posX = position.x;
                 posY = position.y;
                 validate();
-                collectSample();
+                if (checkObstacle()) {
+                    rollback();
+                    throw new ValidationException(ERR_HIT_OBSTACLE);
+                }
+                else {
+                    collectSample();
+                }
             }else if (movement.charAt(i) == 'L'){
                 direction = direction.left();
             }else if (movement.charAt(i) == 'R'){
@@ -93,6 +100,21 @@ public class Rover {
     private void collectSample(){
         if (plateau.hasSample(position)){
             basket.add(plateau.collectSample(position));
+        }
+    }
+
+    private boolean checkObstacle(){
+        return plateau.hasObstacle(position);
+    }
+
+    private void rollback(){
+        switch (direction) {
+            case N -> position.translate(0, -1);
+            case E -> position.translate(-1, 0);
+            case S -> position.translate(0, 1);
+            case W -> position.translate(1, 0);
+            default -> {
+            } //ignore
         }
     }
 

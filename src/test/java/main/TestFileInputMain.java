@@ -128,4 +128,37 @@ public class TestFileInputMain {
 
         assertEquals(actualMessage,expectedMessage);
     }
+
+    @Test
+    void testRoversCollision() {
+        Exception exception = assertThrows(ValidationException.class, () -> {
+            FileInputController controller = new FileInputController("testfile/input-rovers-collision.txt");
+            Plateau plateau = new Plateau(controller.getPlateauWidth(), controller.getPlateauHeight());
+            List<Instruction> instructions = controller.getInstructions();
+
+            Rover rover = new Rover(
+                    instructions.get(0).getPositionX(), instructions.get(0).getPositionY(),
+                    instructions.get(0).getDirection(), plateau
+            );
+            rover.setMovement(instructions.get(0).getMovement());
+            rover.go();
+            plateau.addRovers(rover);
+
+            Rover rover2 = new Rover(
+                    instructions.get(1).getPositionX(), instructions.get(1).getPositionY(),
+                    instructions.get(1).getDirection(), plateau
+            );
+            rover2.setMovement(instructions.get(1).getMovement());
+            rover2.go();
+
+            assertEquals(new Point(1,3), rover.getPosition());
+            assertEquals(Direction.N, rover.getDirection());
+            assertEquals(new Point(1,2), rover2.getPosition());
+            assertEquals(Direction.N, rover2.getDirection());
+        });
+
+        String actualMessage = exception.getMessage();
+
+        assertEquals(actualMessage,"Watch out! You hit obstacle.");
+    }
 }

@@ -21,6 +21,8 @@ public class Plateau {
 
     private List<Sample> samples;
 
+    private List<Rover> rovers;
+
     private int numOfSample;
 
     public Plateau (int width, int height) throws ValidationException {
@@ -30,6 +32,7 @@ public class Plateau {
         this.size = new Dimension(width, height);
         samples = new ArrayList<>();
         numOfSample = width*height/10;
+        rovers = new ArrayList<>();
     }
     public Dimension getSize() {
         return size;
@@ -76,5 +79,21 @@ public class Plateau {
             }
         }
         return result;
+    }
+
+    public void addRovers(Rover rover) {
+        this.rovers.add(rover);
+    }
+
+    public boolean hasObstacle(Point location){
+        boolean hasObstacle = false;
+        for (Rover rover: rovers){
+            if (location.equals(rover.getPosition())){
+                hasObstacle = true;
+                break;
+            }
+        }
+        return hasObstacle;
+
     }
 }
