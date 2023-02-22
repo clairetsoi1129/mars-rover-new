@@ -1,8 +1,9 @@
 package model;
 
 import exception.ValidationException;
-import model.Plateau;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
 
 import java.awt.*;
 
@@ -29,6 +30,19 @@ public class TestPlateau {
         }
     }
 
+    @ParameterizedTest
+    @CsvFileSource(resources = "/plateau-invalid-case.csv", numLinesToSkip = 1)
+    void testInvalidCaseThrowException(
+            int inputWidth, int inputHeight, String expectedMessage) {
+        Exception exception = assertThrows(ValidationException.class, () -> {
+            Plateau plateau = new Plateau(inputWidth, inputHeight);
+        });
+
+        String actualMessage = exception.getMessage();
+
+        assertEquals(actualMessage,expectedMessage);
+    }
+
     @Test
     void testNegativePlateauWidth() {
         Exception exception = assertThrows(ValidationException.class, () -> {
@@ -36,42 +50,6 @@ public class TestPlateau {
         });
 
         String expectedMessage = "Width should be greater than 1";
-        String actualMessage = exception.getMessage();
-
-        assertEquals(actualMessage,expectedMessage);
-    }
-
-    @Test
-    void testNegativePlateauHeight() {
-        Exception exception = assertThrows(ValidationException.class, () -> {
-            Plateau plateau = new Plateau(1,-1);
-        });
-
-        String expectedMessage = "Height should be greater than 1";
-        String actualMessage = exception.getMessage();
-
-        assertEquals(actualMessage,expectedMessage);
-    }
-
-    @Test
-    void testZeroPlateauHeight() {
-        Exception exception = assertThrows(ValidationException.class, () -> {
-            Plateau plateau = new Plateau(0,1);
-        });
-
-        String expectedMessage = "Width should be greater than 1";
-        String actualMessage = exception.getMessage();
-
-        assertEquals(actualMessage,expectedMessage);
-    }
-
-    @Test
-    void testZeroPlateauWidth() {
-        Exception exception = assertThrows(ValidationException.class, () -> {
-            Plateau plateau = new Plateau(1,0);
-        });
-
-        String expectedMessage = "Height should be greater than 1";
         String actualMessage = exception.getMessage();
 
         assertEquals(actualMessage,expectedMessage);

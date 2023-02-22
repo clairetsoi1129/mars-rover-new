@@ -1,0 +1,5 @@
+InputWidth,InputHeight,Expected,Remark
+-1,1,Width should be greater than 1,NegativePlateauWidth
+1,-1,Height should be greater than 1,NegativePlateauHeight
+0,1,Width should be greater than 1,ZeroPlateauWidth
+1,0,Height should be greater than 1,ZeroPlateauHeight
