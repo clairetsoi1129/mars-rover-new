@@ -30,8 +30,8 @@ public class Instruction {
     }
 
     public void setMovement(String movement) throws ValidationException{
-        validate();
         this.movement = movement;
+        validate();
     }
 
     public void parseInitRow(){
