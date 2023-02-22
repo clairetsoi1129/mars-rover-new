@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-public class Rover {
+public class Rover implements MovingEntity{
     private final String ERR_HIT_OBSTACLE = "Watch out! You hit obstacle.";
     private final String ERR_OUT_OF_BOUND_POSX = "Invalid position X. It is out of Plateau size.";
     private final String ERR_OUT_OF_BOUND_POSY = "Invalid position Y. It is out of Plateau size.";
@@ -107,7 +107,7 @@ public class Rover {
         return plateau.hasObstacle(position);
     }
 
-    private void rollback(){
+    public void rollback(){
         switch (direction) {
             case N -> position.translate(0, -1);
             case E -> position.translate(-1, 0);

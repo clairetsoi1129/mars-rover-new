@@ -15,10 +15,6 @@ public class Sample {
         return location;
     }
 
-    public void setLocation(Point location) {
-        this.location = location;
-    }
-
     public boolean isCollected() {
         return isCollected;
     }
