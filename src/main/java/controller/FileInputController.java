@@ -16,6 +16,7 @@ public class FileInputController {
     private List<Instruction> instructions;
     private int plateauWidth;
     private int plateauHeight;
+
     public FileInputController(String filename) throws ValidationException {
         instructions = new ArrayList<>();
         try {
@@ -24,7 +25,7 @@ public class FileInputController {
             sizeRow = scanner.nextLine();
             validate();
             parseSize();
-            while(scanner.hasNext()){
+            while (scanner.hasNext()) {
                 instructions.add(new Instruction(scanner.nextLine(), scanner.nextLine()));
             }
             scanner.close();
@@ -33,7 +34,7 @@ public class FileInputController {
         }
     }
 
-    public void parseSize(){
+    public void parseSize() {
         String[] size = sizeRow.split(" ");
         plateauWidth = Integer.parseInt(size[0]);
         plateauHeight = Integer.parseInt(size[1]);

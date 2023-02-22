@@ -24,12 +24,10 @@ public class TextInputController {
     private int plateauWidth;
     private int plateauHeight;
 
-    private String continueStr;
-
     public TextInputController() throws ValidationException {
         instructions = new ArrayList<>();
 
-        Scanner scanner=new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         System.out.println(MSG_WELCOME);
         System.out.println(MSG_STEP_SIZE);
         sizeRow = scanner.nextLine();
@@ -43,18 +41,18 @@ public class TextInputController {
             instruction.setMovement(scanner.nextLine());
             instructions.add(instruction);
             System.out.println(MSG_STEP_CONT);
-        }while (parseContinue(scanner.nextLine()));
+        } while (parseContinue(scanner.nextLine()));
 
         scanner.close();
     }
 
-    public void parseSize(){
+    public void parseSize() {
         String[] size = sizeRow.split(" ");
         plateauWidth = Integer.parseInt(size[0]);
         plateauHeight = Integer.parseInt(size[1]);
     }
 
-    public boolean parseContinue(String continueStr){
+    public boolean parseContinue(String continueStr) {
         return continueStr.equalsIgnoreCase("Y");
     }
 
