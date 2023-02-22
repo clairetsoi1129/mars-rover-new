@@ -1,6 +1,8 @@
 package model;
 
 import exception.ValidationException;
+import util.RandomLocation;
+
 import javax.validation.*;
 import javax.validation.constraints.Min;
 import java.awt.*;
@@ -43,9 +45,9 @@ public class Plateau {
     }
 
 
-    public void generateSample() {
+    public void generateSample(RandomLocation random) {
         for (int i=0; i<numOfSample; i++) {
-            samples.add(new Sample(new Point(i+1, i+1)));
+            samples.add(new Sample(random.getGeneratedLocation(i)));
         }
     }
 
@@ -62,5 +64,17 @@ public class Plateau {
             }
         }
         return hasSample;
+    }
+
+    public Sample collectSample(Point location) {
+        Sample result = null;
+        for (Sample sample: samples){
+            if (location.equals(sample.getLocation())){
+                sample.setCollected(true);
+                result = sample;
+                break;
+            }
+        }
+        return result;
     }
 }

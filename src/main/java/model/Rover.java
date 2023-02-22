@@ -8,6 +8,8 @@ import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 import javax.validation.constraints.Min;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 public class Rover {
@@ -24,6 +26,8 @@ public class Rover {
 
     private String movement;
 
+    private List<Sample> basket;
+
     public Rover(int posX, int posY, Direction direction, Plateau plateau) throws ValidationException {
         this.posX = posX;
         this.posY = posY;
@@ -31,6 +35,7 @@ public class Rover {
         validate();
         position = new Point(this.posX, this.posY);
         this.direction = direction;
+        basket = new ArrayList<>();
     }
 
     public Point getPosition() {
@@ -75,6 +80,7 @@ public class Rover {
                 posX = position.x;
                 posY = position.y;
                 validate();
+                collectSample();
             }else if (movement.charAt(i) == 'L'){
                 direction = direction.left();
             }else if (movement.charAt(i) == 'R'){
@@ -82,5 +88,15 @@ public class Rover {
             } // ignore
 
         }
+    }
+
+    private void collectSample(){
+        if (plateau.hasSample(position)){
+            basket.add(plateau.collectSample(position));
+        }
+    }
+
+    public List<Sample> getBasket() {
+        return basket;
     }
 }
