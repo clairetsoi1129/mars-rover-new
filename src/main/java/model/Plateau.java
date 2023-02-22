@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-public class Plateau {
+public class Plateau implements Scene{
     @Min(value = 1, message = "Width should be greater than 1")
     private int width;
 
