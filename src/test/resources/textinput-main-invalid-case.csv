@@ -1,0 +1,19 @@
+Input,Output
+-5 -5%s1 2 N%sLMLMLMLMM%sN%s,Plateau size is invalid. Please input 2 integers and separated by space.
+5%s1 2 N%sLMLMLMLMM%sN%s,Plateau size is invalid. Please input 2 integers and separated by space.
+5 5 5%s1 2 N%sLMLMLMLMM%sN%s,Plateau size is invalid. Please input 2 integers and separated by space.
+A B%s1 2 N%sLMLMLMLMM%sN%s,Plateau size is invalid. Please input 2 integers and separated by space.
+5.5 5%s1 2 N%sLMLMLMLMM%sN%s,Plateau size is invalid. Please input 2 integers and separated by space.
+%s%s%sN%s,Plateau size is invalid. Please input 2 integers and separated by space.
+5 5%s1 N%sLMLMLMLMM%sN%s,Invalid initial position or direction. Please input positive integer for x and y coordinates of Rover. And input N/E/S/W for direction.
+5 5%s1 2%sLMLMLMLMM%sN%s,Invalid initial position or direction. Please input positive integer for x and y coordinates of Rover. And input N/E/S/W for direction.
+5 5%s1 2 R%sLMLMLMLMM%sN%s,Invalid initial position or direction. Please input positive integer for x and y coordinates of Rover. And input N/E/S/W for direction.
+5 5%s1.1 2 N%sLMLMLMLMM%sN%s,Invalid initial position or direction. Please input positive integer for x and y coordinates of Rover. And input N/E/S/W for direction.
+5 5%s1 2.2 N%sLMLMLMLMM%sN%s,Invalid initial position or direction. Please input positive integer for x and y coordinates of Rover. And input N/E/S/W for direction.
+5 5%s-1 2 N%sLMLMLMLMM%sN%s,Invalid initial position or direction. Please input positive integer for x and y coordinates of Rover. And input N/E/S/W for direction.
+5 5%s1 -2 N%sLMLMLMLMM%sN%s,Invalid initial position or direction. Please input positive integer for x and y coordinates of Rover. And input N/E/S/W for direction.
+5 5%s1 2 N%sE%sN%s,Invalid movement. Please input L/R/M in one row.
+5 5%s6 1 N%sLMLMLMLMM%sN%s,Invalid position X. It is out of Plateau size.
+5 5%s1 6 N%sLMLMLMLMM%sN%s,Invalid position Y. It is out of Plateau size.
+5 5%s0 0 W%sM%sN%s,Invalid position X. It is out of Plateau size.
+5 5%s0 0 S%sM%sN%s,Invalid position Y. It is out of Plateau size.
