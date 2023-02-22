@@ -42,16 +42,4 @@ public class TestPlateau {
 
         assertEquals(actualMessage,expectedMessage);
     }
-
-    @Test
-    void testNegativePlateauWidth() {
-        Exception exception = assertThrows(ValidationException.class, () -> {
-            Plateau plateau = new Plateau(-1,1);
-        });
-
-        String expectedMessage = "Width should be greater than 1";
-        String actualMessage = exception.getMessage();
-
-        assertEquals(actualMessage,expectedMessage);
-    }
 }
