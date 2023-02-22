@@ -13,3 +13,5 @@ testfile/input-decimal-posY.txt,Invalid initial position or direction. Please in
 testfile/input-negative-posX.txt,Invalid initial position or direction. Please input positive integer for x and y coordinates of Rover. And input N/E/S/W for direction.
 testfile/input-negative-posY.txt,Invalid initial position or direction. Please input positive integer for x and y coordinates of Rover. And input N/E/S/W for direction.
 testfile/input-wrong-movement.txt,Invalid movement. Please input L/R/M in one row.
+testfile/input-posX-outside.txt,Invalid initial X. It is out of Plateau size.
+testfile/input-posY-outside.txt,Invalid initial Y. It is out of Plateau size.
