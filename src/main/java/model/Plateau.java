@@ -19,12 +19,15 @@ public class Plateau {
 
     private List<Sample> samples;
 
+    private int numOfSample;
+
     public Plateau (int width, int height) throws ValidationException {
         this.width = width;
         this.height = height;
         validate();
         this.size = new Dimension(width, height);
         samples = new ArrayList<>();
+        numOfSample = width*height/10;
     }
     public Dimension getSize() {
         return size;
@@ -41,7 +44,9 @@ public class Plateau {
 
 
     public void generateSample() {
-        samples.add(new Sample(new Point(1,1)));
+        for (int i=0; i<numOfSample; i++) {
+            samples.add(new Sample(new Point(i+1, i+1)));
+        }
     }
 
     public List<Sample> getSamples() {

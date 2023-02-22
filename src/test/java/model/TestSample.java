@@ -18,6 +18,10 @@ public class TestSample {
             Point point = new Point(1,1);
             assertTrue(plateau.hasSample(point));
             assertEquals(point, sampleLoc);
+            sampleLoc = plateau.getSamples().get(1).getLocation();
+            point = new Point(2,2);
+            assertTrue(plateau.hasSample(point));
+            assertEquals(point, sampleLoc);
         }catch (ValidationException ignored){
 
         }
