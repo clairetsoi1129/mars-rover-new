@@ -4,6 +4,8 @@ import exception.ValidationException;
 import javax.validation.*;
 import javax.validation.constraints.Min;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 public class Plateau {
@@ -15,11 +17,14 @@ public class Plateau {
 
     private Dimension size;
 
+    private List<Sample> samples;
+
     public Plateau (int width, int height) throws ValidationException {
         this.width = width;
         this.height = height;
         validate();
         this.size = new Dimension(width, height);
+        samples = new ArrayList<>();
     }
     public Dimension getSize() {
         return size;
@@ -32,5 +37,25 @@ public class Plateau {
         for (ConstraintViolation<Plateau> violation : violations) {
             throw new ValidationException(violation.getMessage());
         }
+    }
+
+
+    public void generateSample() {
+        samples.add(new Sample(new Point(1,1)));
+    }
+
+    public List<Sample> getSamples() {
+        return samples;
+    }
+
+    public boolean hasSample(Point location){
+        boolean hasSample = false;
+        for (Sample sample: samples){
+            if (location.equals(sample.getLocation())){
+                hasSample = true;
+                break;
+            }
+        }
+        return hasSample;
     }
 }
