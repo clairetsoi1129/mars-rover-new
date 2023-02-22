@@ -3,11 +3,12 @@ package controller;
 import exception.ValidationException;
 import model.Direction;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
 
 import java.io.ByteArrayInputStream;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TestTextInputController {
 
@@ -105,5 +106,28 @@ public class TestTextInputController {
 
         }
         System.setIn(System.in);
+    }
+
+    @ParameterizedTest
+    @CsvFileSource(resources = "/textinput-invalid-case.csv", numLinesToSkip = 1)
+    void testInvalidCaseThrowException(
+            String input, String expectedMessage) {
+        Exception exception = assertThrows(ValidationException.class, () -> {
+            String userInput = String.format(input,
+                    System.lineSeparator(),
+                    System.lineSeparator(),
+                    System.lineSeparator(),
+                    System.lineSeparator());
+            ByteArrayInputStream bais = new ByteArrayInputStream(userInput.getBytes());
+            System.setIn(bais);
+
+            TextInputController controller = new TextInputController();
+            assertNotNull(controller);
+
+            System.setIn(System.in);
+        });
+
+        String actualMessage = exception.getMessage();
+        assertEquals(actualMessage,expectedMessage);
     }
 }
