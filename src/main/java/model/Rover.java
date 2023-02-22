@@ -11,15 +11,13 @@ import java.awt.*;
 import java.util.Set;
 
 public class Rover {
-    private final String ERR_OUT_OF_BOUND_POSX = "Invalid initial X. It is out of Plateau size.";
-    private final String ERR_OUT_OF_BOUND_POSY = "Invalid initial Y. It is out of Plateau size.";
-    @Min(value = 0, message = "Position X must be positive or 0")
+    private final String ERR_OUT_OF_BOUND_POSX = "Invalid position X. It is out of Plateau size.";
+    private final String ERR_OUT_OF_BOUND_POSY = "Invalid position Y. It is out of Plateau size.";
+    @Min(value = 0, message = "Invalid position X. It is out of Plateau size.")
     private int posX;
-    @Min(value = 0, message = "Position Y must be positive or 0")
+    @Min(value = 0, message = "Invalid position Y. It is out of Plateau size.")
     private int posY;
     private Point position;
-
-    private String dirStr;
     private Direction direction;
 
     private Plateau plateau;
@@ -63,7 +61,7 @@ public class Rover {
         this.movement = movement;
     }
 
-    public void go() {
+    public void go() throws ValidationException{
         for (int i = 0; i< movement.length(); i++){
             if (movement.charAt(i) == 'M'){
                 switch (direction) {
@@ -74,6 +72,9 @@ public class Rover {
                     default -> {
                     } //ignore
                 }
+                posX = position.x;
+                posY = position.y;
+                validate();
             }else if (movement.charAt(i) == 'L'){
                 direction = direction.left();
             }else if (movement.charAt(i) == 'R'){

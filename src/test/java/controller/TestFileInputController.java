@@ -74,8 +74,8 @@ public class TestFileInputController {
             assertEquals(3, controller.getInstructions().get(1).getPositionY());
             assertEquals(Direction.E, controller.getInstructions().get(1).getDirection());
             assertEquals("MMRMMRMRRM", controller.getInstructions().get(1).getMovement());
-            assertEquals(0, controller.getInstructions().get(2).getPositionX());
-            assertEquals(0, controller.getInstructions().get(2).getPositionY());
+            assertEquals(1, controller.getInstructions().get(2).getPositionX());
+            assertEquals(1, controller.getInstructions().get(2).getPositionY());
             assertEquals(Direction.S, controller.getInstructions().get(2).getDirection());
             assertEquals("M", controller.getInstructions().get(2).getMovement());
         }catch (ValidationException ignored){
