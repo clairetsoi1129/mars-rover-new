@@ -21,7 +21,17 @@ public class Instruction {
         this.movement = moveRow.toUpperCase();
         validate();
         parseInitRow();
+    }
 
+    public Instruction(String initRow) throws ValidationException{
+        this.initRow = initRow;
+        validate();
+        parseInitRow();
+    }
+
+    public void setMovement(String movement) throws ValidationException{
+        validate();
+        this.movement = movement;
     }
 
     public void parseInitRow(){
@@ -33,14 +43,14 @@ public class Instruction {
 
     public void validate() throws ValidationException {
         String initRowRegex = "^[0-9]+\s[0-9]+\s[NESWnesw]$";
-        boolean initRowMatch = Pattern.compile(initRowRegex).matcher(initRow).matches();
-        String moveRowRegex = "^[MLRmlr]+$";
-        boolean moveRowMatch = Pattern.compile(moveRowRegex).matcher(movement).matches();
-
-        if (!initRowMatch)
+        if (!Pattern.compile(initRowRegex).matcher(initRow).matches())
             throw new ValidationException(ERR_INIT_ROW);
-        if (!moveRowMatch)
-            throw new ValidationException(ERR_MOVE_ROW);
+
+        if (movement!= null && !"".equalsIgnoreCase(movement)) {
+            String moveRowRegex = "^[MLRmlr]+$";
+            if (!Pattern.compile(moveRowRegex).matcher(movement).matches())
+                throw new ValidationException(ERR_MOVE_ROW);
+        }
     }
 
     public int getPositionX() {
