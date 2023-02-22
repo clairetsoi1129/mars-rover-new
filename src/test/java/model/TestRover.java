@@ -2,11 +2,12 @@ package model;
 
 import exception.ValidationException;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
 
 import java.awt.*;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TestRover {
     @Test
@@ -21,222 +22,33 @@ public class TestRover {
         }
     }
 
-    @Test
-    void testNegativeInitPositionX() {
+    @ParameterizedTest
+    @CsvFileSource(resources = "/rover-invalid-case.csv", numLinesToSkip = 1)
+    void testInvalidCaseThrowException(
+            int inputX, int inputY, Direction inputDir, String expectedMessage) {
         Exception exception = assertThrows(ValidationException.class, () -> {
             Plateau plateau = new Plateau(5, 5);
-            Rover rover = new Rover(-2, 3, Direction.N, plateau);
+            Rover rover = new Rover(inputX, inputY, inputDir, plateau);
         });
 
-        String expectedMessage = "Position X must be positive or 0";
-        String actualMessage = exception.getMessage();
-
-        assertEquals(actualMessage,expectedMessage);
-    }
-
-    @Test
-    void testNegativeInitPositionY() {
-        Exception exception = assertThrows(ValidationException.class, () -> {
-            Plateau plateau = new Plateau(5, 5);
-            Rover rover = new Rover(2, -3, Direction.N, plateau);
-        });
-
-        String expectedMessage = "Position Y must be positive or 0";
-        String actualMessage = exception.getMessage();
-
-        assertEquals(actualMessage,expectedMessage);
-    }
-
-    @Test
-    void testInitPositionXOutOfBound() {
-        Exception exception = assertThrows(ValidationException.class, () -> {
-            Plateau plateau = new Plateau(5, 5);
-            Rover rover = new Rover(6, 1, Direction.N, plateau);
-        });
-
-        String expectedMessage = "Invalid initial X. It is out of Plateau size.";
-        String actualMessage = exception.getMessage();
-
-        assertEquals(actualMessage,expectedMessage);
-    }
-
-    @Test
-    void testInitPositionYOutOfBound() {
-        Exception exception = assertThrows(ValidationException.class, () -> {
-            Plateau plateau = new Plateau(5, 5);
-            Rover rover = new Rover(1, 6, Direction.N, plateau);
-        });
-
-        String expectedMessage = "Invalid initial Y. It is out of Plateau size.";
         String actualMessage = exception.getMessage();
 
         assertEquals(actualMessage,expectedMessage);
     }
 
 
-    @Test
-    void testNormalRoverMoveNorthOneStep() {
+    @ParameterizedTest
+    @CsvFileSource(resources = "/rover-valid-case.csv", numLinesToSkip = 1)
+    void testNormalRoverMove(
+            int inputX, int inputY, Direction inputDir, String movement,
+            int expectedX, int expectedY, Direction expectedDir) {
         try {
             Plateau plateau = new Plateau(5, 5);
-            Rover rover = new Rover(1, 1, Direction.N, plateau);
-            rover.setMovement("M");
+            Rover rover = new Rover(inputX, inputY, inputDir, plateau);
+            rover.setMovement(movement);
             rover.go();
-            assertEquals(new Point(1,2),rover.getPosition());
-            assertEquals(Direction.N,rover.getDirection());
-        }catch (ValidationException ignored){
-
-        }
-    }
-
-    @Test
-    void testNormalRoverMoveSouthOneStep() {
-        try {
-            Plateau plateau = new Plateau(5, 5);
-            Rover rover = new Rover(1, 1, Direction.S, plateau);
-            rover.setMovement("M");
-            rover.go();
-            assertEquals(new Point(1,0),rover.getPosition());
-            assertEquals(Direction.S,rover.getDirection());
-        }catch (ValidationException ignored){
-
-        }
-    }
-
-    @Test
-    void testNormalRoverMoveEastOneStep() {
-        try {
-            Plateau plateau = new Plateau(5, 5);
-            Rover rover = new Rover(1, 1, Direction.E, plateau);
-            rover.setMovement("M");
-            rover.go();
-            assertEquals(new Point(2,1),rover.getPosition());
-            assertEquals(Direction.E,rover.getDirection());
-        }catch (ValidationException ignored){
-
-        }
-    }
-
-    @Test
-    void testNormalRoverMoveWestOneStep() {
-        try {
-            Plateau plateau = new Plateau(5, 5);
-            Rover rover = new Rover(1, 1, Direction.W, plateau);
-            rover.setMovement("M");
-            rover.go();
-            assertEquals(new Point(0,1),rover.getPosition());
-            assertEquals(Direction.W,rover.getDirection());
-        }catch (ValidationException ignored){
-
-        }
-    }
-
-    @Test
-    void testNormalRoverFaceNorthTurnLeft() {
-        try {
-            Plateau plateau = new Plateau(5, 5);
-            Rover rover = new Rover(1, 1, Direction.N, plateau);
-            rover.setMovement("L");
-            rover.go();
-            assertEquals(new Point(1,1),rover.getPosition());
-            assertEquals(Direction.W,rover.getDirection());
-        }catch (ValidationException ignored){
-
-        }
-    }
-
-    @Test
-    void testNormalRoverFaceSouthTurnLeft() {
-        try {
-            Plateau plateau = new Plateau(5, 5);
-            Rover rover = new Rover(1, 1, Direction.S, plateau);
-            rover.setMovement("L");
-            rover.go();
-            assertEquals(new Point(1,1),rover.getPosition());
-            assertEquals(Direction.E,rover.getDirection());
-        }catch (ValidationException ignored){
-
-        }
-    }
-
-    @Test
-    void testNormalRoverFaceEastTurnLeft() {
-        try {
-            Plateau plateau = new Plateau(5, 5);
-            Rover rover = new Rover(1, 1, Direction.E, plateau);
-            rover.setMovement("L");
-            rover.go();
-            assertEquals(new Point(1,1),rover.getPosition());
-            assertEquals(Direction.N,rover.getDirection());
-        }catch (ValidationException ignored){
-
-        }
-    }
-
-    @Test
-    void testNormalRoverFaceWestTurnLeft() {
-        try {
-            Plateau plateau = new Plateau(5, 5);
-            Rover rover = new Rover(1, 1, Direction.W, plateau);
-            rover.setMovement("L");
-            rover.go();
-            assertEquals(new Point(1,1),rover.getPosition());
-            assertEquals(Direction.S,rover.getDirection());
-        }catch (ValidationException ignored){
-
-        }
-    }
-
-    @Test
-    void testNormalRoverFaceNorthTurnRight() {
-        try {
-            Plateau plateau = new Plateau(5, 5);
-            Rover rover = new Rover(1, 1, Direction.N, plateau);
-            rover.setMovement("R");
-            rover.go();
-            assertEquals(new Point(1,1),rover.getPosition());
-            assertEquals(Direction.E,rover.getDirection());
-        }catch (ValidationException ignored){
-
-        }
-    }
-
-    @Test
-    void testNormalRoverFaceSouthTurnRight() {
-        try {
-            Plateau plateau = new Plateau(5, 5);
-            Rover rover = new Rover(1, 1, Direction.S, plateau);
-            rover.setMovement("R");
-            rover.go();
-            assertEquals(new Point(1,1),rover.getPosition());
-            assertEquals(Direction.W,rover.getDirection());
-        }catch (ValidationException ignored){
-
-        }
-    }
-
-    @Test
-    void testNormalRoverFaceEastTurnRight() {
-        try {
-            Plateau plateau = new Plateau(5, 5);
-            Rover rover = new Rover(1, 1, Direction.E, plateau);
-            rover.setMovement("R");
-            rover.go();
-            assertEquals(new Point(1,1),rover.getPosition());
-            assertEquals(Direction.S,rover.getDirection());
-        }catch (ValidationException ignored){
-
-        }
-    }
-
-    @Test
-    void testNormalRoverFaceWestTurnRight() {
-        try {
-            Plateau plateau = new Plateau(5, 5);
-            Rover rover = new Rover(1, 1, Direction.W, plateau);
-            rover.setMovement("R");
-            rover.go();
-            assertEquals(new Point(1,1),rover.getPosition());
-            assertEquals(Direction.N,rover.getDirection());
+            assertEquals(new Point(expectedX,expectedY),rover.getPosition());
+            assertEquals(expectedDir,rover.getDirection());
         }catch (ValidationException ignored){
 
         }

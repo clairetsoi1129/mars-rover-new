@@ -1,0 +1,5 @@
+InputX,InputY,Direction,Output
+-2,3,N,Invalid position X. It is out of Plateau size.
+2,-3,N,Invalid position Y. It is out of Plateau size.
+6,1,N,Invalid position X. It is out of Plateau size.
+1,6,N,Invalid position Y. It is out of Plateau size.

@@ -1,0 +1,13 @@
+InputX,InputY,InputDirection,InputMovement,OutputX,OutputY,OutputDirection,Remark
+1,1,N,M,1,2,N,Move 1 Step
+1,1,S,M,1,0,S,Move 1 Step
+1,1,E,M,2,1,E,Move 1 Step
+1,1,W,M,0,1,W,Move 1 Step
+1,1,N,L,1,1,W,Turn Left
+1,1,S,L,1,1,E,Turn Left
+1,1,E,L,1,1,N,Turn Left
+1,1,W,L,1,1,S,Turn Left
+1,1,N,R,1,1,E,Turn Right
+1,1,S,R,1,1,W,Turn Right
+1,1,E,R,1,1,S,Turn Right
+1,1,W,R,1,1,N,Turn Right
