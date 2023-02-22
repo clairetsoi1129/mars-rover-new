@@ -34,7 +34,7 @@ public class Plateau {
         this.size = new Dimension(width, height);
         samples = new ArrayList<>();
         numOfSample = width*height/10;
-        numOfObstacle = width*height/10;
+        numOfObstacle = width*height/10+1;
         rovers = new ArrayList<>();
         obstacles = new ArrayList<>();
     }
@@ -53,8 +53,9 @@ public class Plateau {
 
 
     public void generateSample(RandomLocation random) {
-        for (int i=0; i<numOfSample; i++) {
-            samples.add(new Sample(random.getGeneratedLocation(i)));
+        List<Point> locations = random.generateLocationAvoidConflict(numOfSample);
+        for (Point loc: locations) {
+            samples.add(new Sample(loc));
         }
     }
 
@@ -108,8 +109,9 @@ public class Plateau {
     }
 
     public void generateObstacle(RandomLocation random) {
-        for (int i=0; i<numOfObstacle; i++) {
-            obstacles.add(new Obstacle(random.getGeneratedLocation(i)));
+        List<Point> locations = random.generateLocationAvoidConflict(numOfObstacle);
+        for (Point loc: locations) {
+            obstacles.add(new Obstacle(loc));
         }
     }
 

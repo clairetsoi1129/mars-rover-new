@@ -10,6 +10,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import util.RandomLocation;
 
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -24,10 +26,11 @@ public class TestSample {
     void init() {
         random = Mockito.mock(RandomLocation.class);
 
-        lenient().when(random.getGeneratedLocation(0)).thenReturn(new Point(1,1));
-        lenient().when(random.getGeneratedLocation(1)).thenReturn(new Point(2,2));
-        lenient().when(random.getGeneratedLocation(2)).thenReturn(new Point(3,3));
-        lenient().when(random.getGeneratedLocation(3)).thenReturn(new Point(4,4));
+        List<Point> points = new ArrayList<>();
+        points.add(new Point(1,1));
+        points.add(new Point(2,2));
+
+        lenient().when(random.generateLocationAvoidConflict(2)).thenReturn(points);
     }
     @Test
     void testNormalSample() {

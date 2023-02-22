@@ -11,12 +11,9 @@ public class RandomLocationImpl implements RandomLocation{
 
     private Dimension dimension;
 
-    public RandomLocationImpl(Dimension plateauSize, List<Point> roverInitPos) {
+    public RandomLocationImpl(Dimension plateauSize) {
         this.dimension = plateauSize;
         this.occupiedLocs = new ArrayList<>();
-        this.generatedLocs = new ArrayList<>();
-
-        occupiedLocs.addAll(roverInitPos);
     }
 
     private Point generateLocation(){
@@ -25,10 +22,6 @@ public class RandomLocationImpl implements RandomLocation{
 
     private int getRandomNumber(int min, int max) {
         return new SecureRandom().nextInt(min, max);
-    }
-
-    public Point getGeneratedLocation(int i) {
-        return generatedLocs.get(i);
     }
 
     public void generateLocationAvoidConflict(){
@@ -40,10 +33,12 @@ public class RandomLocationImpl implements RandomLocation{
         occupiedLocs.add(location);
     }
 
-    public void generateLocationAvoidConflict(int times){
+    public List<Point> generateLocationAvoidConflict(int times){
+        generatedLocs = new ArrayList<>();
         for (int i=0; i<times; i++) {
             generateLocationAvoidConflict();
         }
+        return generatedLocs;
     }
 
     private boolean hasConflict(Point location){

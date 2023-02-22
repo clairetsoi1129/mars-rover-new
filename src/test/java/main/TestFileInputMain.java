@@ -6,22 +6,51 @@ import model.Direction;
 import model.Instruction;
 import model.Plateau;
 import model.Rover;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
+import util.RandomLocation;
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.lenient;
 
+@ExtendWith(MockitoExtension.class)
 public class TestFileInputMain {
+    @Mock
+    RandomLocation random;
+
+    @BeforeEach
+    void init() {
+        random = Mockito.mock(RandomLocation.class);
+
+        List<Point> points = new ArrayList<>();
+        points.add(new Point(1,1));
+        points.add(new Point(2,2));
+        lenient().when(random.generateLocationAvoidConflict(2)).thenReturn(points);
+
+        points.add(new Point(2,1));
+        points.add(new Point(3,2));
+        points.add(new Point(4,3));
+        lenient().when(random.generateLocationAvoidConflict(3)).thenReturn(points);
+    }
+
     @Test
     void testNormalFile1Rover() {
         try {
             FileInputController controller = new FileInputController("testfile/input-normal-1rovers.txt");
             Plateau plateau = new Plateau(controller.getPlateauWidth(), controller.getPlateauHeight());
             List<Instruction> instructions = controller.getInstructions();
+            plateau.generateSample(random);
+            plateau.generateObstacle(random);
 
             Rover rover = new Rover(
                     instructions.get(0).getPositionX(), instructions.get(0).getPositionY(),
@@ -33,6 +62,7 @@ public class TestFileInputMain {
             assertEquals(new Dimension(5,5), plateau.getSize());
             assertEquals(new Point(1,3), rover.getPosition());
             assertEquals(Direction.N, rover.getDirection());
+            assertEquals(0, rover.getBasket().size());
         }catch (ValidationException ignored){
 
         }
@@ -44,6 +74,8 @@ public class TestFileInputMain {
             FileInputController controller = new FileInputController("testfile/input-normal-2rovers.txt");
             Plateau plateau = new Plateau(controller.getPlateauWidth(), controller.getPlateauHeight());
             List<Instruction> instructions = controller.getInstructions();
+            plateau.generateSample(random);
+            plateau.generateObstacle(random);
 
             Rover rover = new Rover(
                     instructions.get(0).getPositionX(), instructions.get(0).getPositionY(),
@@ -74,6 +106,8 @@ public class TestFileInputMain {
             FileInputController controller = new FileInputController("testfile/input-normal-3rovers.txt");
             Plateau plateau = new Plateau(controller.getPlateauWidth(), controller.getPlateauHeight());
             List<Instruction> instructions = controller.getInstructions();
+            plateau.generateSample(random);
+            plateau.generateObstacle(random);
 
             Rover rover = new Rover(
                     instructions.get(0).getPositionX(), instructions.get(0).getPositionY(),
@@ -115,6 +149,11 @@ public class TestFileInputMain {
             FileInputController controller = new FileInputController(input);
             Plateau plateau = new Plateau(controller.getPlateauWidth(), controller.getPlateauHeight());
             List<Instruction> instructions = controller.getInstructions();
+            plateau.generateSample(random);
+            plateau.generateObstacle(random);
+
+            plateau.generateSample(random);
+            plateau.generateObstacle(random);
 
             Rover rover = new Rover(
                     instructions.get(0).getPositionX(), instructions.get(0).getPositionY(),
@@ -135,6 +174,8 @@ public class TestFileInputMain {
             FileInputController controller = new FileInputController("testfile/input-rovers-collision.txt");
             Plateau plateau = new Plateau(controller.getPlateauWidth(), controller.getPlateauHeight());
             List<Instruction> instructions = controller.getInstructions();
+            plateau.generateSample(random);
+            plateau.generateObstacle(random);
 
             Rover rover = new Rover(
                     instructions.get(0).getPositionX(), instructions.get(0).getPositionY(),

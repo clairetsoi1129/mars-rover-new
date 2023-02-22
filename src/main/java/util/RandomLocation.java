@@ -1,9 +1,8 @@
 package util;
 
 import java.awt.*;
+import java.util.List;
 
 public interface RandomLocation {
-    Point getGeneratedLocation(int i);
-
-    void generateLocationAvoidConflict(int times);
+    List<Point> generateLocationAvoidConflict(int times);
 }
