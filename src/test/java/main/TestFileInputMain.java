@@ -3,8 +3,6 @@ package main;
 import controller.FileInputController;
 import exception.ValidationException;
 import model.Direction;
-import model.Instruction;
-import model.Plateau;
 import model.Rover;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -47,22 +45,13 @@ public class TestFileInputMain {
     void testNormalFile1Rover() {
         try {
             FileInputController controller = new FileInputController("testfile/input-normal-1rovers.txt");
-            Plateau plateau = new Plateau(controller.getPlateauWidth(), controller.getPlateauHeight());
-            List<Instruction> instructions = controller.getInstructions();
-            plateau.generateSample(random);
-            plateau.generateObstacle(random);
+            Game game = new Game(controller);
+            game.start();
 
-            Rover rover = new Rover(
-                    instructions.get(0).getPositionX(), instructions.get(0).getPositionY(),
-                    instructions.get(0).getDirection(), plateau
-            );
-            rover.setMovement(instructions.get(0).getMovement());
-            rover.go();
-
-            assertEquals(new Dimension(5,5), plateau.getSize());
-            assertEquals(new Point(1,3), rover.getPosition());
-            assertEquals(Direction.N, rover.getDirection());
-            assertEquals(0, rover.getBasket().size());
+            assertEquals(new Dimension(5,5), game.getPlateau().getSize());
+            assertEquals(new Point(1,3), game.getRovers().get(0).getPosition());
+            assertEquals(Direction.N, game.getRovers().get(0).getDirection());
+            assertEquals(0, ((Rover)game.getRovers().get(0)).getBasket().size());
         }catch (ValidationException ignored){
 
         }
@@ -72,29 +61,13 @@ public class TestFileInputMain {
     void testNormalFile2Rovers() {
         try {
             FileInputController controller = new FileInputController("testfile/input-normal-2rovers.txt");
-            Plateau plateau = new Plateau(controller.getPlateauWidth(), controller.getPlateauHeight());
-            List<Instruction> instructions = controller.getInstructions();
-            plateau.generateSample(random);
-            plateau.generateObstacle(random);
+            Game game = new Game(controller);
+            game.start();
 
-            Rover rover = new Rover(
-                    instructions.get(0).getPositionX(), instructions.get(0).getPositionY(),
-                    instructions.get(0).getDirection(), plateau
-            );
-            rover.setMovement(instructions.get(0).getMovement());
-            rover.go();
-
-            Rover rover2 = new Rover(
-                    instructions.get(1).getPositionX(), instructions.get(1).getPositionY(),
-                    instructions.get(1).getDirection(), plateau
-            );
-            rover2.setMovement(instructions.get(1).getMovement());
-            rover2.go();
-
-            assertEquals(new Point(1,3), rover.getPosition());
-            assertEquals(Direction.N, rover.getDirection());
-            assertEquals(new Point(5,1), rover2.getPosition());
-            assertEquals(Direction.E, rover2.getDirection());
+            assertEquals(new Point(1,3), game.getRovers().get(0).getPosition());
+            assertEquals(Direction.N, game.getRovers().get(0).getDirection());
+            assertEquals(new Point(5,1), game.getRovers().get(1).getPosition());
+            assertEquals(Direction.E, game.getRovers().get(1).getDirection());
         }catch (ValidationException ignored){
 
         }
@@ -104,38 +77,15 @@ public class TestFileInputMain {
     void testNormalFile3Rovers() {
         try {
             FileInputController controller = new FileInputController("testfile/input-normal-3rovers.txt");
-            Plateau plateau = new Plateau(controller.getPlateauWidth(), controller.getPlateauHeight());
-            List<Instruction> instructions = controller.getInstructions();
-            plateau.generateSample(random);
-            plateau.generateObstacle(random);
+            Game game = new Game(controller);
+            game.start();
 
-            Rover rover = new Rover(
-                    instructions.get(0).getPositionX(), instructions.get(0).getPositionY(),
-                    instructions.get(0).getDirection(), plateau
-            );
-            rover.setMovement(instructions.get(0).getMovement());
-            rover.go();
-
-            Rover rover2 = new Rover(
-                    instructions.get(1).getPositionX(), instructions.get(1).getPositionY(),
-                    instructions.get(1).getDirection(), plateau
-            );
-            rover2.setMovement(instructions.get(1).getMovement());
-            rover2.go();
-
-            Rover rover3 = new Rover(
-                    instructions.get(2).getPositionX(), instructions.get(2).getPositionY(),
-                    instructions.get(2).getDirection(), plateau
-            );
-            rover3.setMovement(instructions.get(2).getMovement());
-            rover3.go();
-
-            assertEquals(new Point(1,3), rover.getPosition());
-            assertEquals(Direction.N, rover.getDirection());
-            assertEquals(new Point(5,1), rover2.getPosition());
-            assertEquals(Direction.E, rover2.getDirection());
-            assertEquals(new Point(1,0), rover3.getPosition());
-            assertEquals(Direction.S, rover3.getDirection());
+            assertEquals(new Point(1,3), game.getRovers().get(0).getPosition());
+            assertEquals(Direction.N, game.getRovers().get(0).getDirection());
+            assertEquals(new Point(5,1), game.getRovers().get(1).getPosition());
+            assertEquals(Direction.E, game.getRovers().get(1).getDirection());
+            assertEquals(new Point(1,0), game.getRovers().get(2).getPosition());
+            assertEquals(Direction.S, game.getRovers().get(2).getDirection());
         }catch (ValidationException ignored){
 
         }
@@ -147,20 +97,8 @@ public class TestFileInputMain {
             String input, String expectedMessage) {
         Exception exception = assertThrows(ValidationException.class, () -> {
             FileInputController controller = new FileInputController(input);
-            Plateau plateau = new Plateau(controller.getPlateauWidth(), controller.getPlateauHeight());
-            List<Instruction> instructions = controller.getInstructions();
-            plateau.generateSample(random);
-            plateau.generateObstacle(random);
-
-            plateau.generateSample(random);
-            plateau.generateObstacle(random);
-
-            Rover rover = new Rover(
-                    instructions.get(0).getPositionX(), instructions.get(0).getPositionY(),
-                    instructions.get(0).getDirection(), plateau
-            );
-            rover.setMovement(instructions.get(0).getMovement());
-            rover.go();
+            Game game = new Game(controller);
+            game.start();
         });
 
         String actualMessage = exception.getMessage();
@@ -172,30 +110,13 @@ public class TestFileInputMain {
     void testRoversCollision() {
         Exception exception = assertThrows(ValidationException.class, () -> {
             FileInputController controller = new FileInputController("testfile/input-rovers-collision.txt");
-            Plateau plateau = new Plateau(controller.getPlateauWidth(), controller.getPlateauHeight());
-            List<Instruction> instructions = controller.getInstructions();
-            plateau.generateSample(random);
-            plateau.generateObstacle(random);
+            Game game = new Game(controller);
+            game.start();
 
-            Rover rover = new Rover(
-                    instructions.get(0).getPositionX(), instructions.get(0).getPositionY(),
-                    instructions.get(0).getDirection(), plateau
-            );
-            rover.setMovement(instructions.get(0).getMovement());
-            rover.go();
-            plateau.addRovers(rover);
-
-            Rover rover2 = new Rover(
-                    instructions.get(1).getPositionX(), instructions.get(1).getPositionY(),
-                    instructions.get(1).getDirection(), plateau
-            );
-            rover2.setMovement(instructions.get(1).getMovement());
-            rover2.go();
-
-            assertEquals(new Point(1,3), rover.getPosition());
-            assertEquals(Direction.N, rover.getDirection());
-            assertEquals(new Point(1,2), rover2.getPosition());
-            assertEquals(Direction.N, rover2.getDirection());
+            assertEquals(new Point(1,3), game.getRovers().get(0).getPosition());
+            assertEquals(Direction.N, game.getRovers().get(0).getDirection());
+            assertEquals(new Point(1,2), game.getRovers().get(1).getPosition());
+            assertEquals(Direction.N, game.getRovers().get(1).getDirection());
         });
 
         String actualMessage = exception.getMessage();

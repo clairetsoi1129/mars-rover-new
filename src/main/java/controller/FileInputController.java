@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
-public class FileInputController {
+public class FileInputController implements InputController{
     private final String ERR_SIZE_ROW = "Plateau size is invalid. Please input 2 integers and separated by space.";
     private String sizeRow;
     private List<Instruction> instructions;

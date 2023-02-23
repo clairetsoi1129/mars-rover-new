@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
-public class TextInputController {
+public class TextInputController implements InputController{
     private final String MSG_WELCOME = "Welcome to Melody Mars Mission, you can have a wonderful experience " +
             "to move rovers around the surface of Mars!";
     private final String MSG_STEP_SIZE = "Please enter plateau size in integer (width height). eg. 5 6";
@@ -16,8 +16,6 @@ public class TextInputController {
 
     private final String MSG_STEP_MOVE = "Please enter the instruction (LRM) to Rover in one row, eg. LRRMRRMM.";
     private final String MSG_STEP_CONT = "Do you want to create another rover? (y/n)";
-
-
     private final String ERR_SIZE_ROW = "Plateau size is invalid. Please input 2 integers and separated by space.";
     private String sizeRow;
     private List<Instruction> instructions;
