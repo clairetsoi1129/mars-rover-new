@@ -29,6 +29,8 @@ public class Rover implements MovingEntity{
 
     private List<Sample> basket;
 
+    private String stepsTaken = "";
+
     public Rover(int posX, int posY, Direction direction, Plateau plateau) throws ValidationException {
         this.posX = posX;
         this.posY = posY;
@@ -70,6 +72,7 @@ public class Rover implements MovingEntity{
     public void go() throws ValidationException{
         for (int i = 0; i< movement.length(); i++){
             if (movement.charAt(i) == 'M'){
+                stepsTaken+=movement.charAt(i);
                 switch (direction) {
                     case N -> position.translate(0, 1);
                     case E -> position.translate(1, 0);
@@ -80,7 +83,12 @@ public class Rover implements MovingEntity{
                 }
                 posX = position.x;
                 posY = position.y;
-                validate();
+                try {
+                    validate();
+                }catch (ValidationException e){
+                    rollback();
+                    throw e;
+                }
                 if (checkObstacle()) {
                     rollback();
                     throw new ValidationException(ERR_HIT_OBSTACLE);
@@ -89,8 +97,10 @@ public class Rover implements MovingEntity{
                     collectSample();
                 }
             }else if (movement.charAt(i) == 'L'){
+                stepsTaken+=movement.charAt(i);
                 direction = direction.left();
             }else if (movement.charAt(i) == 'R'){
+                stepsTaken+=movement.charAt(i);
                 direction = direction.right();
             } // ignore
 
@@ -108,6 +118,7 @@ public class Rover implements MovingEntity{
     }
 
     public void rollback(){
+        stepsTaken=stepsTaken.substring(0, stepsTaken.length()-1)+"[M]";
         switch (direction) {
             case N -> position.translate(0, -1);
             case E -> position.translate(-1, 0);
@@ -120,5 +131,10 @@ public class Rover implements MovingEntity{
 
     public List<Sample> getBasket() {
         return basket;
+    }
+
+    @Override
+    public String getStepsTaken() {
+        return stepsTaken;
     }
 }
