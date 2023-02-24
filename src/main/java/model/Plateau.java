@@ -89,20 +89,31 @@ public class Plateau implements Scene{
         this.rovers.add(rover);
     }
 
-    public boolean hasObstacle(Point location){
+    public boolean hasOtherRover(Point location, Rover currRover){
         boolean hasObstacle = false;
         for (Rover rover: rovers){
-            if (location.equals(rover.getPosition())){
-                hasObstacle = true;
-                break;
+            if (rover != currRover) {
+                if (location.equals(rover.getPosition())) {
+                    hasObstacle = true;
+                    break;
+                }
             }
         }
+        if (hasObstacle)
+            System.out.println("Rover at "+location);
+        return hasObstacle;
+    }
+
+    public boolean hasObstacle(Point location){
+        boolean hasObstacle = false;
         for (Obstacle obstacle: obstacles){
             if (location.equals(obstacle.getLocation())){
                 hasObstacle = true;
                 break;
             }
         }
+        if (hasObstacle)
+            System.out.println("Obstacle at "+location);
         return hasObstacle;
 
     }

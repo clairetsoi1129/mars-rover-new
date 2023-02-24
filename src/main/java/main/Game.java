@@ -47,7 +47,10 @@ public class Game {
                     instruction.getDirection(), plateau
             );
             rover.setMovement(instruction.getMovement());
+            System.out.println(MessageFormat.format("Initial position: {0},{1}",
+                    rover.getPosition(), rover.getDirection()));
             rovers.add(rover);
+            plateau.addRovers(rover);
         }
     }
 

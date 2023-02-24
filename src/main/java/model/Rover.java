@@ -64,7 +64,8 @@ public class Rover extends MovingEntity{
     }
 
     private boolean checkObstacle(){
-        return ((Plateau)plateau).hasObstacle(position);
+        return ((Plateau)plateau).hasObstacle(position) ||
+                ((Plateau)plateau).hasOtherRover(position, this);
     }
 
     public List<Sample> getBasket() {
