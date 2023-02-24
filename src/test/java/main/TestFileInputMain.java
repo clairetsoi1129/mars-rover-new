@@ -45,7 +45,7 @@ public class TestFileInputMain {
     void testNormalFile1Rover() {
         try {
             FileInputController controller = new FileInputController("testfile/input-normal-1rovers.txt");
-            Game game = new Game(controller);
+            Game game = new Game(controller, random);
             game.start();
 
             assertEquals(new Dimension(5,5), game.getPlateau().getSize());
@@ -61,7 +61,7 @@ public class TestFileInputMain {
     void testNormalFile2Rovers() {
         try {
             FileInputController controller = new FileInputController("testfile/input-normal-2rovers.txt");
-            Game game = new Game(controller);
+            Game game = new Game(controller, random);
             game.start();
 
             assertEquals(new Point(1,3), game.getRovers().get(0).getPosition());
@@ -77,7 +77,7 @@ public class TestFileInputMain {
     void testNormalFile3Rovers() {
         try {
             FileInputController controller = new FileInputController("testfile/input-normal-3rovers.txt");
-            Game game = new Game(controller);
+            Game game = new Game(controller, random);
             game.start();
 
             assertEquals(new Point(1,3), game.getRovers().get(0).getPosition());
@@ -97,7 +97,7 @@ public class TestFileInputMain {
             String input, String expectedMessage) {
         Exception exception = assertThrows(ValidationException.class, () -> {
             FileInputController controller = new FileInputController(input);
-            Game game = new Game(controller);
+            Game game = new Game(controller, random);
             game.start();
         });
 
@@ -110,7 +110,7 @@ public class TestFileInputMain {
     void testRoversCollision() {
         Exception exception = assertThrows(ValidationException.class, () -> {
             FileInputController controller = new FileInputController("testfile/input-rovers-collision.txt");
-            Game game = new Game(controller);
+            Game game = new Game(controller, random);
             game.start();
 
             assertEquals(new Point(1,3), game.getRovers().get(0).getPosition());

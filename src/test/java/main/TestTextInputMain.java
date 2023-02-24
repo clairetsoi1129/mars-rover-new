@@ -53,7 +53,7 @@ public class TestTextInputMain {
 
         try {
             TextInputController controller = new TextInputController();
-            Game game = new Game(controller);
+            Game game = new Game(controller, random);
             game.start();
 
             assertNotNull(controller);
@@ -82,7 +82,7 @@ public class TestTextInputMain {
         System.setIn(bais);
         try {
             TextInputController controller = new TextInputController();
-            Game game = new Game(controller);
+            Game game = new Game(controller, random);
             game.start();
 
             assertEquals(new Point(1,3), game.getRovers().get(0).getPosition());
@@ -113,7 +113,7 @@ public class TestTextInputMain {
 
         try {
             TextInputController controller = new TextInputController();
-            Game game = new Game(controller);
+            Game game = new Game(controller, random);
             game.start();
 
             assertEquals(new Point(1,3), game.getRovers().get(0).getPosition());
@@ -141,7 +141,7 @@ public class TestTextInputMain {
             System.setIn(bais);
 
             TextInputController controller = new TextInputController();
-            Game game = new Game(controller);
+            Game game = new Game(controller, random);
             game.start();
         });
 
@@ -165,7 +165,7 @@ public class TestTextInputMain {
             System.setIn(bais);
 
             TextInputController controller = new TextInputController();
-            Game game = new Game(controller);
+            Game game = new Game(controller, random);
             game.start();
 
             assertEquals(new Point(1,3), game.getRovers().get(0).getPosition());
