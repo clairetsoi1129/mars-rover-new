@@ -17,3 +17,4 @@ A B%s1 2 N%sLMLMLMLMM%sN%s,Plateau size is invalid. Please input 2 integers and 
 5 5%s1 6 N%sLMLMLMLMM%sN%s,Invalid position Y. It is out of Plateau size.
 5 5%s0 0 W%sM%sN%s,Invalid position X. It is out of Plateau size.
 5 5%s0 0 S%sM%sN%s,Invalid position Y. It is out of Plateau size.
+5 5%s1 2 E%sMM%sN%s,Watch out! You hit obstacle.

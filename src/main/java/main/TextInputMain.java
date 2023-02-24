@@ -10,7 +10,7 @@ public class TextInputMain {
             Game game = new Game(controller);
             game.start();
         } catch (ValidationException e) {
-            throw new RuntimeException(e);
+            System.err.println(e.getMessage());
         }
     }
 }

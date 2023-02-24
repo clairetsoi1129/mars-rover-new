@@ -17,3 +17,4 @@ testfile/input-posX-outside.txt,Invalid position X. It is out of Plateau size.
 testfile/input-posY-outside.txt,Invalid position Y. It is out of Plateau size.
 testfile/input-hitboundary-posX.txt,Invalid position X. It is out of Plateau size.
 testfile/input-hitboundary-posY.txt,Invalid position Y. It is out of Plateau size.
+testfile/input-obstacle.txt,Watch out! You hit obstacle.
