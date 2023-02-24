@@ -11,9 +11,9 @@ public class RandomLocationImpl implements RandomLocation{
 
     private Dimension dimension;
 
-    public RandomLocationImpl(Dimension plateauSize) {
+    public RandomLocationImpl(Dimension plateauSize, List<Point> occupiedLocs) {
         this.dimension = plateauSize;
-        this.occupiedLocs = new ArrayList<>();
+        this.occupiedLocs = occupiedLocs;
     }
 
     private Point generateLocation(){

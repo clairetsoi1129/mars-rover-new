@@ -6,6 +6,7 @@ import model.*;
 import util.RandomLocation;
 import util.RandomLocationImpl;
 
+import java.awt.*;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,10 +25,16 @@ public class Game {
 
     public void init(InputController controller, RandomLocation random) throws ValidationException{
         rovers = new ArrayList<>();
+        List<Instruction> instructions = controller.getInstructions();
+
+        List<Point> occupiedLocs = new ArrayList<>();
+        for (Instruction instruction: instructions){
+            occupiedLocs.add(new Point(instruction.getPositionX(), instruction.getPositionY()));
+        }
 
         plateau = new Plateau(controller.getPlateauWidth(), controller.getPlateauHeight());
         if (random == null)
-            random = new RandomLocationImpl(plateau.getSize());
+            random = new RandomLocationImpl(plateau.getSize(), occupiedLocs);
         plateau.generateSample(random);
         plateau.generateObstacle(random);
 
@@ -40,7 +47,6 @@ public class Game {
             System.out.println("obstacle:"+obstacle.getLocation());
         }
 
-        List<Instruction> instructions = controller.getInstructions();
         for (Instruction instruction: instructions) {
             Rover rover = new Rover(
                     instruction.getPositionX(), instruction.getPositionY(),

@@ -25,7 +25,7 @@ public class GraphicView {
     private final int WIN_WIDTH = 800;
     private final int WIN_HEIGHT = 700;
     private final int TEXT_AREA_WIDTH = WIN_WIDTH;
-    private final int TEXT_AREA_HEIGHT = 100;
+    private final int TEXT_AREA_HEIGHT = 150;
     private final int TEXT_AREA_X = 0;
     private final int TEXT_AREA_Y = WIN_HEIGHT - TEXT_AREA_HEIGHT;
 

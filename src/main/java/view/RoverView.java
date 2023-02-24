@@ -39,11 +39,11 @@ public class RoverView {
         String msg;
 
         if (isGameEnd)
-            msg = MessageFormat.format("Congratulation! You have collected all the samples. Total samples collected is {0}. Your final position is {1} and heading to {2}. Steps taken are {3}.",
-                    basketSize, rover.getPosition(), rover.getDirection(), steps);
+            msg = MessageFormat.format("Congratulation! You have collected all the samples. Total samples collected is {0}. Your final position is ({1},{2}) and heading to {3}. Steps taken are {4}.",
+                    basketSize, rover.getPosition().x, rover.getPosition().y, rover.getDirection(), steps);
         else
-            msg = MessageFormat.format("Your new positiion is {0} and heading to {1}. You got {2} sample(s) now. Steps: {3}.",
-                    rover.getPosition(), rover.getDirection(), basketSize, steps);
+            msg = MessageFormat.format("Your new position is ({0},{1}) and heading to {2}. You got {3} sample(s) now. Steps: {4}.",
+                    rover.getPosition().x, rover.getPosition().y, rover.getDirection(), basketSize, steps);
 
         gui.getMessageText().setText(msg);
     }
