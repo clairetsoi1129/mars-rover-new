@@ -28,7 +28,7 @@ public class PlateauView {
     private void initUI(){
         JPanel panel = gui.getBgPanel()[1];
         for (int row = 0; row < plateau.getSize().getWidth(); row++) {
-            for (int col = 0; col < plateau.getSize().getWidth(); col++) {
+            for (int col = 0; col < plateau.getSize().getHeight(); col++) {
                 JLabel gridLabel = new JLabel();
                 Point pos = gui.getGridPos(row, col);
                 gridLabel.setBounds(pos.x, pos.y, 50, 50);
