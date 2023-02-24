@@ -17,11 +17,20 @@ public class Game {
     private boolean isGameEnd;
 
     public Game(InputController controller) throws ValidationException {
+        init(controller, null);
+    }
+
+    public Game(InputController controller, RandomLocation random) throws ValidationException {
+        init(controller, random);
+    }
+
+    public void init(InputController controller, RandomLocation random) throws ValidationException{
         isGameEnd = false;
         rovers = new ArrayList<>();
 
         plateau = new Plateau(controller.getPlateauWidth(), controller.getPlateauHeight());
-        RandomLocation random = new RandomLocationImpl(plateau.getSize());
+        if (random == null)
+            random = new RandomLocationImpl(plateau.getSize());
         plateau.generateSample(random);
         plateau.generateObstacle(random);
 
