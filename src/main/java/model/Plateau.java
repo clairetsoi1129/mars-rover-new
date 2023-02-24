@@ -50,8 +50,7 @@ public class Plateau implements Scene{
             throw new ValidationException(violation.getMessage());
         }
     }
-
-
+    
     public void generateSample(RandomLocation random) {
         List<Point> locations = random.generateLocationAvoidConflict(numOfSample);
         for (Point loc: locations) {
