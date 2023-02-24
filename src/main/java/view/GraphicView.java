@@ -140,7 +140,7 @@ public class GraphicView {
 
         try {
             game.start();
-            roverUI.updateUI(false);
+            roverUI.updateUI(game.isGameEnd());
             plateauUI.updateSampleUI();
 
         } catch (ValidationException e) {
@@ -187,9 +187,5 @@ public class GraphicView {
 
     public void setGame(Game game) {
         this.game = game;
-    }
-
-    public JFrame getWindow() {
-        return window;
     }
 }

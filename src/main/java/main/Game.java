@@ -14,8 +14,6 @@ public class Game {
     private List<MovingEntity> rovers;
     private Plateau plateau;
 
-    private boolean isGameEnd;
-
     public Game(InputController controller) throws ValidationException {
         init(controller, null);
     }
@@ -25,7 +23,6 @@ public class Game {
     }
 
     public void init(InputController controller, RandomLocation random) throws ValidationException{
-        isGameEnd = false;
         rovers = new ArrayList<>();
 
         plateau = new Plateau(controller.getPlateauWidth(), controller.getPlateauHeight());
@@ -47,7 +44,7 @@ public class Game {
         for (Instruction instruction: instructions) {
             Rover rover = new Rover(
                     instruction.getPositionX(), instruction.getPositionY(),
-                    instruction.getDirection(), (Plateau)plateau
+                    instruction.getDirection(), plateau
             );
             rover.setMovement(instruction.getMovement());
             rovers.add(rover);
@@ -55,12 +52,13 @@ public class Game {
     }
 
     public void start() throws ValidationException {
-        for (MovingEntity rover: rovers) {
-            rover.go();
-            System.out.println(MessageFormat.format("Final position: {0},{1}",
-                    rover.getPosition(), rover.getDirection()));
+        if (!isGameEnd()) {
+            for (MovingEntity rover : rovers) {
+                rover.go();
+                System.out.println(MessageFormat.format("Final position: {0},{1}",
+                        rover.getPosition(), rover.getDirection()));
+            }
         }
-
     }
 
     public List<MovingEntity> getRovers() {
@@ -69,5 +67,9 @@ public class Game {
 
     public Scene getPlateau() {
         return plateau;
+    }
+
+    public boolean isGameEnd(){
+        return plateau.getSamples().size() == ((Rover)rovers.get(0)).getBasket().size();
     }
 }
