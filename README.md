@@ -1,14 +1,16 @@
 # Mars Rover New
+## New version is a rewrite due to
+* consider unit test for single class instead of the test for the main class
+* using validator to consolidate the validation code in single function
+* rename the class to proper name, eg. AVehicle change to MovingEntity
+* reconsider of using abstract class or interface (eg. InputController better use interface instead of Abstract class, as the similarities between different controller is not that strong)
+* use key event instead of mouse event for moving rover in graphic view for faster movement
+But still unable to figure out the best way (has tried AssertJ but failed to click on button) to do GUI unit test for swing, may be move to JavaFX and try TestFX to do unit test
+
 ## Key Feature:
 1. The game support 3 types of user controller, i.e.
    File input controller, Keyboard input controller, GUI input controller.
 2. Player need to avoid hitting the boundary of plateau and obstacles to collect samples. The no. of samples and obstacles are the size of plateau / 10.
-3. New version is a rewrite to 
-a. consider unit test for single class
-b. using validator
-c. rename the class to proper name
-d. reconsider of using abstract class or interface (eg. InputController better use interface instead of Abstract class)
-e. use key event instead of mouse event for moving rover in graphic view
 
 ## UML diagram
 ## Class Diagram:
