@@ -65,7 +65,7 @@ public class Plateau implements Scene{
     public boolean hasSample(Point location){
         boolean hasSample = false;
         for (Sample sample: samples){
-            if (location.equals(sample.getLocation())){
+            if (location.equals(sample.getLocation()) && !sample.isCollected()){
                 hasSample = true;
                 break;
             }
