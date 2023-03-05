@@ -16,6 +16,11 @@
 ## Class Diagram:
 ![class diagram](mars-rover-new.drawio.png)
 
+#### To run the unit test:
+```
+mvn clean test
+```
+
 #### Flow of file input:
 0. Run the FileInputMain to start the game
 ```
