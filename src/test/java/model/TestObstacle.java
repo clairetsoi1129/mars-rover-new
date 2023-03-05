@@ -34,22 +34,18 @@ public class TestObstacle {
         lenient().when(random.generateLocationAvoidConflict(3)).thenReturn(points);
     }
     @Test
-    void testNormalObstacle() {
-        try {
-            Plateau plateau = new Plateau(5, 5);
-            plateau.generateSample(random);
-            plateau.generateObstacle(random);
-            Point obstacleLoc = plateau.getObstacles().get(0).getLocation();
-            Point point = new Point(2,1);
-            assertTrue(plateau.hasObstacle(point));
-            assertEquals(point, obstacleLoc);
-            obstacleLoc = plateau.getObstacles().get(1).getLocation();
-            point = new Point(3,2);
-            assertTrue(plateau.hasObstacle(point));
-            assertEquals(point, obstacleLoc);
-        }catch (ValidationException ignored){
-
-        }
+    void testNormalObstacle() throws ValidationException{
+        Plateau plateau = new Plateau(5, 5);
+        plateau.generateSample(random);
+        plateau.generateObstacle(random);
+        Point obstacleLoc = plateau.getObstacles().get(0).getLocation();
+        Point point = new Point(2,1);
+        assertTrue(plateau.hasObstacle(point));
+        assertEquals(point, obstacleLoc);
+        obstacleLoc = plateau.getObstacles().get(1).getLocation();
+        point = new Point(3,2);
+        assertTrue(plateau.hasObstacle(point));
+        assertEquals(point, obstacleLoc);
     }
 
 }

@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class TestTextInputController {
 
     @Test
-    void testNormalTextInput1Rover() {
+    void testNormalTextInput1Rover()  throws ValidationException{
         String userInput = String.format("5 5%s1 2 N%sLMLMLMLMM%sN%s",
                 System.lineSeparator(),
                 System.lineSeparator(),
@@ -22,13 +22,8 @@ public class TestTextInputController {
         ByteArrayInputStream bais = new ByteArrayInputStream(userInput.getBytes());
         System.setIn(bais);
 
-        TextInputController controller = null;
+        TextInputController controller = new TextInputController();
 
-        try {
-            controller = new TextInputController();
-        }catch (ValidationException e){
-            e.printStackTrace();
-        }
         assertNotNull(controller);
         assertEquals(5, controller.getPlateauWidth());
         assertEquals(5, controller.getPlateauHeight());
@@ -41,7 +36,7 @@ public class TestTextInputController {
     }
 
     @Test
-    void testNormalTextInput2Rover() {
+    void testNormalTextInput2Rover()  throws ValidationException{
         String userInput = String.format("5 5%s1 2 N%sLMLMLMLMM%sY%s3 3 E%sMMRMMRMRRM%sN%s",
                 System.lineSeparator(),
                 System.lineSeparator(),
@@ -53,13 +48,7 @@ public class TestTextInputController {
         ByteArrayInputStream bais = new ByteArrayInputStream(userInput.getBytes());
         System.setIn(bais);
 
-        TextInputController controller = null;
-
-        try {
-            controller = new TextInputController();
-        }catch (ValidationException e){
-            e.printStackTrace();
-        }
+        TextInputController controller = new TextInputController();
 
         assertNotNull(controller);
         assertEquals(5, controller.getPlateauWidth());
@@ -77,7 +66,7 @@ public class TestTextInputController {
     }
 
     @Test
-    void testNormalTextInput3Rover() {
+    void testNormalTextInput3Rover()  throws ValidationException{
         String userInput = String.format("5 5%s1 2 N%sLMLMLMLMM%sY%s3 3 E%sMMRMMRMRRM%sY%s0 0 S%sM%sN%s",
                 System.lineSeparator(),
                 System.lineSeparator(),
@@ -92,13 +81,7 @@ public class TestTextInputController {
         ByteArrayInputStream bais = new ByteArrayInputStream(userInput.getBytes());
         System.setIn(bais);
 
-        TextInputController controller = null;
-
-        try {
-            controller = new TextInputController();
-        }catch (ValidationException e){
-            e.printStackTrace();
-        }
+        TextInputController controller = new TextInputController();
 
         assertNotNull(controller);
         assertEquals(5, controller.getPlateauWidth());

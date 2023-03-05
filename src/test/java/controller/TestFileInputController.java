@@ -9,13 +9,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class TestFileInputController {
     @Test
-    void testNormalFile1Rover() {
-        FileInputController controller = null;
-        try {
-            controller = new FileInputController("testfile/input-normal-1rovers.txt");
-        }catch (ValidationException e){
-            e.printStackTrace();
-        }
+    void testNormalFile1Rover()  throws ValidationException{
+        FileInputController controller = new FileInputController("testfile/input-normal-1rovers.txt");
+
         assertNotNull(controller);
         assertEquals(5, controller.getPlateauWidth());
         assertEquals(5, controller.getPlateauHeight());
@@ -26,13 +22,9 @@ public class TestFileInputController {
     }
 
     @Test
-    void testNormalFile1RoverSmallLetter() {
-        FileInputController controller = null;
-        try {
-            controller = new FileInputController("testfile/input-normal-1rovers-small-letter.txt");
-        }catch (ValidationException e){
-            e.printStackTrace();
-        }
+    void testNormalFile1RoverSmallLetter()  throws ValidationException{
+        FileInputController controller = new FileInputController("testfile/input-normal-1rovers-small-letter.txt");
+
         assertNotNull(controller);
         assertEquals(5, controller.getPlateauWidth());
         assertEquals(5, controller.getPlateauHeight());
@@ -42,13 +34,9 @@ public class TestFileInputController {
         assertEquals("LMLMLMLMM", controller.getInstructions().get(0).getMovement());
     }
     @Test
-    void testNormalFile2Rovers() {
-        FileInputController controller = null;
-        try {
-            controller = new FileInputController("testfile/input-normal-2rovers.txt");
-        }catch (ValidationException e){
-            e.printStackTrace();
-        }
+    void testNormalFile2Rovers()  throws ValidationException{
+        FileInputController controller = new FileInputController("testfile/input-normal-2rovers.txt");
+
         assertNotNull(controller);
         assertEquals(5, controller.getPlateauWidth());
         assertEquals(5, controller.getPlateauHeight());
@@ -63,13 +51,9 @@ public class TestFileInputController {
     }
 
     @Test
-    void testNormalFile3Rovers() {
-        FileInputController controller = null;
-        try {
-            controller = new FileInputController("testfile/input-normal-3rovers.txt");
-        }catch (ValidationException e){
-            e.printStackTrace();
-        }
+    void testNormalFile3Rovers() throws ValidationException{
+        FileInputController controller = new FileInputController("testfile/input-normal-3rovers.txt");
+
         assertNotNull(controller);
         assertEquals(5, controller.getPlateauWidth());
         assertEquals(5, controller.getPlateauHeight());

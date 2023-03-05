@@ -43,16 +43,10 @@ public class TestFileInputMain {
     }
 
     @Test
-    void testNormalFile1Rover() {
-        FileInputController controller;
-        Game game = null;
-        try {
-            controller = new FileInputController("testfile/input-normal-1rovers.txt");
-            game = new Game(controller, random);
-            game.start();
-        }catch (ValidationException e){
-            e.printStackTrace();
-        }
+    void testNormalFile1Rover()  throws ValidationException{
+        FileInputController controller = new FileInputController("testfile/input-normal-1rovers.txt");
+        Game game = new Game(controller, random);
+        game.start();
 
         assertEquals(new Dimension(5,5), game.getPlateau().getSize());
         assertEquals(new Point(1,3), game.getRovers().get(0).getPosition());
@@ -61,16 +55,11 @@ public class TestFileInputMain {
     }
 
     @Test
-    void testNormalFile2RoverCollectSample() {
-        FileInputController controller;
-        Game game = null;
-        try {
-            controller = new FileInputController("testfile/input-sample.txt");
-            game = new Game(controller, random);
-            game.start();
-        }catch (ValidationException e){
-            e.printStackTrace();
-        }
+    void testNormalFile2RoverCollectSample() throws ValidationException{
+        FileInputController controller = new FileInputController("testfile/input-sample.txt");
+        Game game = new Game(controller, random);
+        game.start();
+
         assertEquals(new Dimension(5,5), game.getPlateau().getSize());
         assertEquals(new Point(1,3), game.getRovers().get(0).getPosition());
         assertEquals(Direction.N, game.getRovers().get(0).getDirection());
@@ -82,16 +71,10 @@ public class TestFileInputMain {
     }
 
     @Test
-    void testNormalFile2Rovers() {
-        FileInputController controller;
-        Game game = null;
-        try {
-            controller = new FileInputController("testfile/input-normal-2rovers.txt");
-            game = new Game(controller, random);
-            game.start();
-        }catch (ValidationException e){
-            e.printStackTrace();
-        }
+    void testNormalFile2Rovers() throws ValidationException{
+        FileInputController controller = new FileInputController("testfile/input-normal-2rovers.txt");
+        Game game = new Game(controller, random);
+        game.start();
 
         assertEquals(new Point(1,3), game.getRovers().get(0).getPosition());
         assertEquals(Direction.N, game.getRovers().get(0).getDirection());
@@ -100,16 +83,10 @@ public class TestFileInputMain {
     }
 
     @Test
-    void testNormalFile3Rovers() {
-        FileInputController controller;
-        Game game = null;
-        try {
-            controller = new FileInputController("testfile/input-normal-3rovers.txt");
-            game = new Game(controller, random);
-            game.start();
-        }catch (ValidationException e){
-            e.printStackTrace();
-        }
+    void testNormalFile3Rovers() throws ValidationException{
+        FileInputController controller = new FileInputController("testfile/input-normal-3rovers.txt");
+        Game game = new Game(controller, random);
+        game.start();
 
         assertEquals(new Point(1,3), game.getRovers().get(0).getPosition());
         assertEquals(Direction.N, game.getRovers().get(0).getDirection());

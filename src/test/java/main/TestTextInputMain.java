@@ -43,7 +43,7 @@ public class TestTextInputMain {
         lenient().when(random.generateLocationAvoidConflict(3)).thenReturn(obstacles);
     }
     @Test
-    void testNormalText1Rover() {
+    void testNormalText1Rover() throws ValidationException{
         String userInput = String.format("5 5%s1 2 N%sLMLMLMLMM%sN%s",
                 System.lineSeparator(),
                 System.lineSeparator(),
@@ -52,16 +52,10 @@ public class TestTextInputMain {
         ByteArrayInputStream bais = new ByteArrayInputStream(userInput.getBytes());
         System.setIn(bais);
 
-        TextInputController controller = null;
-        Game game = null;
+        TextInputController controller = new TextInputController();
+        Game game = new Game(controller, random);
+        game.start();
 
-        try {
-            controller = new TextInputController();
-            game = new Game(controller, random);
-            game.start();
-        }catch (ValidationException e){
-            e.printStackTrace();
-        }
         assertNotNull(controller);
 
         assertEquals(new Dimension(5,5), game.getPlateau().getSize());
@@ -73,7 +67,7 @@ public class TestTextInputMain {
     }
 
     @Test
-    void testNormalText2Rovers() {
+    void testNormalText2Rovers() throws ValidationException{
         String userInput = String.format("5 5%s1 2 N%sLMLMLMLMM%sY%s3 3 E%sLMMRMMRMRRM%sN%s",
                 System.lineSeparator(),
                 System.lineSeparator(),
@@ -85,16 +79,10 @@ public class TestTextInputMain {
         ByteArrayInputStream bais = new ByteArrayInputStream(userInput.getBytes());
         System.setIn(bais);
 
-        TextInputController controller;
-        Game game = null;
+        TextInputController controller = new TextInputController();
+        Game game = new Game(controller, random);
+        game.start();
 
-        try {
-            controller = new TextInputController();
-            game = new Game(controller, random);
-            game.start();
-        }catch (ValidationException e){
-            e.printStackTrace();
-        }
         assertEquals(new Point(1,3), game.getRovers().get(0).getPosition());
         assertEquals(Direction.N, game.getRovers().get(0).getDirection());
         assertEquals(new Point(5,5), game.getRovers().get(1).getPosition());
@@ -104,7 +92,7 @@ public class TestTextInputMain {
     }
 
     @Test
-    void testNormalText3Rovers() {
+    void testNormalText3Rovers()  throws ValidationException{
         String userInput = String.format("5 5%s1 2 N%sLMLMLMLMM%sY%s3 3 E%sLMMRMMRMRRM%sY%s0 0 E%sM%sN%s",
                 System.lineSeparator(),
                 System.lineSeparator(),
@@ -119,16 +107,9 @@ public class TestTextInputMain {
         ByteArrayInputStream bais = new ByteArrayInputStream(userInput.getBytes());
         System.setIn(bais);
 
-        TextInputController controller;
-        Game game = null;
-
-        try {
-            controller = new TextInputController();
-            game = new Game(controller, random);
-            game.start();
-        }catch (ValidationException e){
-            e.printStackTrace();
-        }
+        TextInputController controller = new TextInputController();
+        Game game = new Game(controller, random);
+        game.start();
         assertEquals(new Point(1,3), game.getRovers().get(0).getPosition());
         assertEquals(Direction.N, game.getRovers().get(0).getDirection());
         assertEquals(new Point(5,5), game.getRovers().get(1).getPosition());

@@ -33,35 +33,27 @@ public class TestSample {
         lenient().when(random.generateLocationAvoidConflict(2)).thenReturn(points);
     }
     @Test
-    void testNormalSample() {
-        try {
-            Plateau plateau = new Plateau(5, 5);
-            plateau.generateSample(random);
-            Point sampleLoc = plateau.getSamples().get(0).getLocation();
-            Point point = new Point(1,1);
-            assertTrue(plateau.hasSample(point));
-            assertEquals(point, sampleLoc);
-            sampleLoc = plateau.getSamples().get(1).getLocation();
-            point = new Point(2,2);
-            assertTrue(plateau.hasSample(point));
-            assertEquals(point, sampleLoc);
-        }catch (ValidationException ignored){
-
-        }
+    void testNormalSample() throws ValidationException{
+        Plateau plateau = new Plateau(5, 5);
+        plateau.generateSample(random);
+        Point sampleLoc = plateau.getSamples().get(0).getLocation();
+        Point point = new Point(1,1);
+        assertTrue(plateau.hasSample(point));
+        assertEquals(point, sampleLoc);
+        sampleLoc = plateau.getSamples().get(1).getLocation();
+        point = new Point(2,2);
+        assertTrue(plateau.hasSample(point));
+        assertEquals(point, sampleLoc);
     }
 
     @Test
-    void testNormalRoverCollectSample() {
-        try {
-            Plateau plateau = new Plateau(5, 5);
-            plateau.generateSample(random);
-            Rover rover = new Rover(0,0, Direction.N, plateau);
-            rover.setMovement("MRM");
-            rover.go();
-            assertEquals(1, rover.getBasket().size());
-            assertTrue(rover.getBasket().get(0).isCollected());
-        }catch (ValidationException ignored){
-
-        }
+    void testNormalRoverCollectSample() throws ValidationException{
+        Plateau plateau = new Plateau(5, 5);
+        plateau.generateSample(random);
+        Rover rover = new Rover(0,0, Direction.N, plateau);
+        rover.setMovement("MRM");
+        rover.go();
+        assertEquals(1, rover.getBasket().size());
+        assertTrue(rover.getBasket().get(0).isCollected());
     }
 }

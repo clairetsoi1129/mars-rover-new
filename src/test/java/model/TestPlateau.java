@@ -11,23 +11,15 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class TestPlateau {
     @Test
-    void testNormalSquarePlateauSize() {
-        try {
-            Plateau plateau = new Plateau(5, 5);
-            assertEquals(new Dimension(5, 5), plateau.getSize());
-        }catch (ValidationException ignored){
-
-        }
+    void testNormalSquarePlateauSize() throws ValidationException {
+        Plateau plateau = new Plateau(5, 5);
+        assertEquals(new Dimension(5, 5), plateau.getSize());
     }
 
     @Test
-    void testNormalRectanglePlateauSize() {
-        try {
-            Plateau plateau = new Plateau(8,5);
-            assertEquals(new Dimension(8,5), plateau.getSize());
-        }catch (ValidationException ignored){
-
-        }
+    void testNormalRectanglePlateauSize() throws ValidationException {
+        Plateau plateau = new Plateau(8, 5);
+        assertEquals(new Dimension(8, 5), plateau.getSize());
     }
 
     @ParameterizedTest
@@ -40,6 +32,6 @@ public class TestPlateau {
 
         String actualMessage = exception.getMessage();
 
-        assertEquals(actualMessage,expectedMessage);
+        assertEquals(actualMessage, expectedMessage);
     }
 }

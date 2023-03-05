@@ -11,15 +11,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class TestRover {
     @Test
-    void testNormalInitPosDirection() {
-        try {
-            Plateau plateau = new Plateau(5, 5);
-            Rover rover = new Rover(2, 3, Direction.N, plateau);
-            assertEquals(new Point(2,3), rover.getPosition());
-            assertEquals(Direction.N, rover.getDirection());
-        }catch (ValidationException ignored){
-
-        }
+    void testNormalInitPosDirection() throws ValidationException{
+        Plateau plateau = new Plateau(5, 5);
+        Rover rover = new Rover(2, 3, Direction.N, plateau);
+        assertEquals(new Point(2,3), rover.getPosition());
+        assertEquals(Direction.N, rover.getDirection());
     }
 
     @ParameterizedTest
